@@ -13,8 +13,13 @@ export function generateStaticParams() {
   return lessons.map((l) => ({ id: l.id.toString() }));
 }
 
-export function generateMetadata({ params }: { params: { id: string } }) {
-  const lesson = getLessonById(parseInt(params.id, 10));
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const lesson = getLessonById(parseInt(id, 10));
   if (!lesson) return {};
   return {
     title: `${lesson.title} | Poliglot English`,
@@ -22,8 +27,13 @@ export function generateMetadata({ params }: { params: { id: string } }) {
   };
 }
 
-export default function LessonPage({ params }: { params: { id: string } }) {
-  const lesson = getLessonById(parseInt(params.id, 10));
+export default async function LessonPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const lesson = getLessonById(parseInt(id, 10));
   if (!lesson) notFound();
 
   const progress = (lesson.id / 16) * 100;
