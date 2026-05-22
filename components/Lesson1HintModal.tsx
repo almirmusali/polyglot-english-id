@@ -1,12 +1,17 @@
 "use client";
 
 import type { Question } from "@/data/lesson1Bank";
-import { buildEnglish, TENSE_LABEL } from "@/data/lesson1Bank";
+import { PolyglotTable, type Highlight } from "./PolyglotTable";
 
 /**
- * Petunjuk: tabel 3 waktu × 3 jenis untuk kata kerja & subjek
- * dari soal yang sedang aktif. Sel yang cocok dengan soal aktif
- * disorot hijau.
+ * Petunjuk: tabel teori yang SAMA persis dengan layar Bantuan
+ * (baris Akan datang → Sekarang → Lampau, kolom Pertanyaan →
+ * Pernyataan → Negasi, kata ganti vertikal, kata bantu di kiri),
+ * tetapi dengan SEL AKTIF yang disorot hijau sesuai soal Anda.
+ *
+ * Khusus untuk Sekarang, di mana sel berisi dua sub-grup
+ * (I/you/we/they vs he/she/it), sub-grup yang cocok dengan kata
+ * ganti soal juga ditandai cincin hijau di dalam sel.
  */
 export function Lesson1HintModal({
   question,
@@ -17,8 +22,18 @@ export function Lesson1HintModal({
 }) {
   const { pronoun, verb, tense, kind } = question;
 
-  const tenses = ["present", "past", "future"] as const;
-  const kinds = ["statement", "negative", "question"] as const;
+  const highlight: Highlight = {
+    tense,
+    // map "negative" → "negation" untuk komponen tabel
+    kind: kind === "negative" ? "negation" : kind === "statement" ? "statement" : "question",
+    pronoun: pronoun.en as Highlight["pronoun"],
+  };
+
+  const verbForms = {
+    v1: verb.v1,
+    v1s: verb.v1s,
+    v2: verb.v2,
+  };
 
   return (
     <div
@@ -28,7 +43,7 @@ export function Lesson1HintModal({
       onClick={onClose}
     >
       <div
-        className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-t-3xl bg-white p-5 shadow-2xl sm:rounded-3xl sm:p-6"
+        className="max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-t-3xl bg-white p-5 shadow-2xl sm:rounded-3xl sm:p-6"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-3 flex items-center justify-between">
@@ -54,57 +69,31 @@ export function Lesson1HintModal({
           </button>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr>
-                <th className="border-b-2 border-slate-200 bg-slate-50 px-3 py-2 text-left text-xs font-bold uppercase tracking-wider text-slate-500">
-                  Waktu
-                </th>
-                <th className="border-b-2 border-slate-200 bg-emerald-50 px-3 py-2 text-left text-xs font-bold uppercase tracking-wider text-emerald-700">
-                  Pernyataan
-                </th>
-                <th className="border-b-2 border-slate-200 bg-rose-50 px-3 py-2 text-left text-xs font-bold uppercase tracking-wider text-rose-700">
-                  Negasi
-                </th>
-                <th className="border-b-2 border-slate-200 bg-sky-50 px-3 py-2 text-left text-xs font-bold uppercase tracking-wider text-sky-700">
-                  Pertanyaan
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {tenses.map((t) => (
-                <tr key={t} className="border-b border-slate-100 last:border-b-0">
-                  <td className="bg-slate-50 px-3 py-3 font-semibold text-slate-700">
-                    {TENSE_LABEL[t]}
-                  </td>
-                  {kinds.map((k) => {
-                    const tokens = buildEnglish(pronoun, verb, t, k);
-                    const punct = k === "question" ? "?" : ".";
-                    const active = t === tense && k === kind;
-                    return (
-                      <td
-                        key={k}
-                        className={`px-3 py-3 ${
-                          active
-                            ? "bg-emerald-100 font-semibold text-emerald-900 ring-2 ring-emerald-400"
-                            : ""
-                        }`}
-                      >
-                        {tokens.join(" ")}
-                        {punct}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <PolyglotTable
+          verb={verbForms}
+          highlight={highlight}
+          caption={`Tabel untuk kata kerja "${verb.v1}"`}
+        />
+
+        <div className="mt-4 rounded-xl bg-emerald-50 px-4 py-3 text-xs text-emerald-900">
+          💡 Sel yang ditandai <strong>cincin hijau</strong> menunjukkan
+          jawaban untuk soal Anda saat ini.
+          {tense === "present" && (
+            <>
+              {" "}
+              Di dalam sel itu, sub-grup yang cocok dengan kata ganti{" "}
+              <strong>{pronoun.en}</strong> juga ditandai.
+            </>
+          )}
         </div>
 
-        <div className="mt-4 rounded-xl bg-amber-50 px-4 py-3 text-xs text-amber-900">
-          💡 Sel <span className="font-semibold">hijau</span> menunjukkan
-          jawaban untuk soal Anda saat ini.
+        <div className="mt-4 text-center">
+          <button
+            onClick={onClose}
+            className="rounded-xl border border-slate-300 bg-white px-5 py-2 text-sm font-medium text-slate-700 hover:border-slate-400"
+          >
+            Tutup petunjuk
+          </button>
         </div>
       </div>
     </div>
