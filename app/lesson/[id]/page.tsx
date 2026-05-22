@@ -3,6 +3,7 @@ import { getLessonById, lessons } from "@/data/lessons";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ConjugationTable } from "@/components/ConjugationTable";
+import { VerbConjugation } from "@/components/VerbConjugation";
 import { VocabularyList } from "@/components/VocabularyList";
 import { PhraseList } from "@/components/PhraseList";
 import { ExampleList } from "@/components/ExampleList";
@@ -86,6 +87,7 @@ export default async function LessonPage({
                 {g.heading}
               </h3>
               <p className="mt-2 text-slate-700">{g.explanation}</p>
+              {g.conjugation && <VerbConjugation data={g.conjugation} />}
               {g.table && <ConjugationTable data={g.table} />}
               {g.examples && <ExampleList items={g.examples} />}
               {g.note && (

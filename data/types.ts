@@ -9,10 +9,24 @@ export type ExampleSentence = {
   id: string;
 };
 
+export type ConjugationGroup = {
+  pronouns: string[];
+  cells: [string, string, string]; // [positive, negative, question]
+};
+
+export type VerbConjugationData = {
+  verb: string; // e.g. "to love"
+  tense: string; // e.g. "Present Simple — sekarang"
+  columns?: [string, string, string]; // default: ["Positif", "Negatif", "Pertanyaan"]
+  groups: ConjugationGroup[];
+  hint?: string;
+};
+
 export type GrammarSection = {
   heading: string;
   explanation: string;
   table?: ConjugationTable;
+  conjugation?: VerbConjugationData;
   examples?: ExampleSentence[];
   note?: string;
 };
