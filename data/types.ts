@@ -22,11 +22,24 @@ export type VerbConjugationData = {
   hint?: string;
 };
 
+export type SummaryGridData = {
+  caption?: string;
+  subject: string; // e.g. "I"
+  verb: string; // e.g. "love"
+  rows: {
+    tense: string; // e.g. "Sekarang"
+    aux?: string; // e.g. "do / does"
+    cells: [string, string, string]; // [positive, negative, question]
+  }[];
+  hint?: string;
+};
+
 export type GrammarSection = {
   heading: string;
   explanation: string;
   table?: ConjugationTable;
   conjugation?: VerbConjugationData;
+  summaryGrid?: SummaryGridData;
   examples?: ExampleSentence[];
   note?: string;
 };

@@ -4,11 +4,12 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ConjugationTable } from "@/components/ConjugationTable";
 import { VerbConjugation } from "@/components/VerbConjugation";
+import { SummaryGrid } from "@/components/SummaryGrid";
 import { VocabularyList } from "@/components/VocabularyList";
 import { PhraseList } from "@/components/PhraseList";
 import { ExampleList } from "@/components/ExampleList";
-import { ExerciseSection } from "@/components/ExerciseSection";
 import { LessonNav } from "@/components/LessonNav";
+import Link from "next/link";
 
 export function generateStaticParams() {
   return lessons.map((l) => ({ id: l.id.toString() }));
@@ -88,6 +89,7 @@ export default async function LessonPage({
               </h3>
               <p className="mt-2 text-slate-700">{g.explanation}</p>
               {g.conjugation && <VerbConjugation data={g.conjugation} />}
+              {g.summaryGrid && <SummaryGrid data={g.summaryGrid} />}
               {g.table && <ConjugationTable data={g.table} />}
               {g.examples && <ExampleList items={g.examples} />}
               {g.note && (
@@ -125,21 +127,42 @@ export default async function LessonPage({
           </div>
         </section>
 
-        {/* Exercises */}
+        {/* Trainer CTA */}
         <section className="mt-12">
           <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-500">
             Latihan
           </h2>
-          <h3 className="mt-1 text-xl font-semibold text-slate-900">
-            Uji pemahamanmu
-          </h3>
-          <p className="mt-1 text-sm text-slate-600">
-            Ketik jawabannya dan tekan Cek. Anda bisa melihat jawaban kapan
-            saja.
-          </p>
-          <div className="mt-4">
-            <ExerciseSection exercises={lesson.exercises} />
-          </div>
+          <Link
+            href={`/lesson/${lesson.id}/latihan`}
+            className="mt-3 block overflow-hidden rounded-3xl border border-brand-200 bg-gradient-to-br from-brand-50 via-white to-amber-50 p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-400 hover:shadow-md sm:p-8"
+          >
+            <div className="flex items-start gap-5">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-600 text-2xl text-white shadow-sm">
+                ▶
+              </div>
+              <div className="flex-1">
+                <div className="text-xl font-bold text-slate-900 sm:text-2xl">
+                  Buka Latihan Pelajaran {lesson.id}
+                </div>
+                <div className="mt-1 text-sm text-slate-600">
+                  {lesson.exercises.length} latihan interaktif — terjemahan,
+                  pilihan ganda, dan isi titik-titik. Satu pertanyaan per
+                  layar, dengan skor di akhir.
+                </div>
+                <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
+                  <span className="rounded-full bg-white px-3 py-1 font-medium text-slate-700 ring-1 ring-slate-200">
+                    {lesson.exercises.length} pertanyaan
+                  </span>
+                  <span className="rounded-full bg-white px-3 py-1 font-medium text-slate-700 ring-1 ring-slate-200">
+                    ~{Math.max(3, Math.ceil(lesson.exercises.length * 0.7))} menit
+                  </span>
+                  <span className="ml-auto font-semibold text-brand-700">
+                    Mulai →
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Link>
         </section>
 
         {/* Navigation */}

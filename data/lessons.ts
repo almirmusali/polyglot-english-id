@@ -108,21 +108,60 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: "Ringkasan — pola di tiga waktu",
+        heading: "Ringkasan — 9 bentuk dalam satu tabel",
         explanation:
-          "Lihat satu kata kerja menyatu di seluruh waktu. Inilah kerangka yang Anda akan terapkan ke ribuan kata kerja lain.",
-        table: {
-          caption: "Pola umum — \"to work\" (bekerja)",
-          columns: ["Waktu", "Positif", "Negatif", "Pertanyaan"],
+          "Inilah jantung pelajaran ini. Satu kata kerja, satu subjek, tetapi sembilan bentuk berbeda — tiga waktu dikalikan tiga jenis kalimat. Hafalkan tabel ini, dan Anda sudah punya kerangka untuk ribuan kalimat bahasa Inggris.",
+        summaryGrid: {
+          caption: "\"I\" + kata kerja \"love\" di semua kombinasi",
+          subject: "I",
+          verb: "love",
           rows: [
-            ["Sekarang (I/you/we/they)", "I work", "I don't work", "Do I work?"],
-            ["Sekarang (he/she/it)", "He works", "He doesn't work", "Does he work?"],
-            ["Lampau", "I worked", "I didn't work", "Did I work?"],
-            ["Akan datang", "I will work", "I won't work", "Will I work?"],
+            {
+              tense: "Sekarang",
+              aux: "do",
+              cells: ["I love", "I don't love", "Do I love?"],
+            },
+            {
+              tense: "Lampau",
+              aux: "did",
+              cells: ["I loved", "I didn't love", "Did I love?"],
+            },
+            {
+              tense: "Akan datang",
+              aux: "will",
+              cells: ["I will love", "I won't love", "Will I love?"],
+            },
           ],
+          hint: "Pola kata bantu: sekarang → do/does, lampau → did, akan datang → will. Setiap kata bantu \"menangani\" negasi dan pertanyaan. Setelah kata bantu, kata kerja SELALU dalam bentuk dasar.",
         },
-        note:
-          "Perhatikan pola kata bantu: sekarang → do/does, lampau → did, akan datang → will. Setiap kata bantu \"menangani\" negasi dan pertanyaan. Setelah kata bantu, kata kerja SELALU dalam bentuk dasar.",
+      },
+      {
+        heading: "Pola yang sama untuk \"he / she / it\"",
+        explanation:
+          "Satu-satunya perbedaan untuk \"dia\" (he/she/it) ada di waktu sekarang: kata kerja mendapat -s, dan kata bantu \"do\" berubah jadi \"does\". Di lampau dan masa depan — semuanya sama persis.",
+        summaryGrid: {
+          caption: "\"He\" + kata kerja \"love\" di semua kombinasi",
+          subject: "he",
+          verb: "love",
+          rows: [
+            {
+              tense: "Sekarang",
+              aux: "does",
+              cells: ["He loves", "He doesn't love", "Does he love?"],
+            },
+            {
+              tense: "Lampau",
+              aux: "did",
+              cells: ["He loved", "He didn't love", "Did he love?"],
+            },
+            {
+              tense: "Akan datang",
+              aux: "will",
+              cells: ["He will love", "He won't love", "Will he love?"],
+            },
+          ],
+          hint: "Perhatikan: di pertanyaan dan negasi waktu sekarang dengan he/she/it, \"-s\" hilang dari kata kerja — karena kata bantu \"does\" sudah membawa informasi \"dia\".",
+        },
       },
       {
         heading: "Beberapa kata kerja untuk latihan",
