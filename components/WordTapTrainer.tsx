@@ -24,17 +24,24 @@ const SESSION_SIZE = 25;
 type Status = "answering" | "correct" | "wrong";
 
 /**
- * WordTapTrainer — versi Pelajaran 1 ala Polyglot:
- *   - chip waktu (Sekarang/Lampau/Akan datang)
- *   - kalimat Indonesia di tengah
- *   - grid tombol kata, tap urut untuk merangkai
- *   - "Ups, salah", "Petunjuk", "Bantuan", "Jawaban lisan"
- *   - bilah riwayat, nilai 0.0–5.0 di header
+ * WordTapTrainer LinguaID.
+ *
+ * Mekanika: pengguna men-tap kata-kata Inggris secara berurutan
+ * untuk membentuk kalimat yang diminta oleh prompt bahasa
+ * Indonesia. Pengguna dibantu chip waktu, sehingga tidak ada
+ * ambiguitas tense.
+ *
+ * Tampilan baru:
+ *   • header krem terang dengan logo merek (bukan bar hijau)
+ *   • prompt menggunakan tipografi Fraunces untuk karakter
+ *   • tombol kata radius besar, hover oranye
+ *   • bilah riwayat di kanan atas, kompak
+ *   • panel bawah 4 ikon, gaya kartu
  */
 export function WordTapTrainer({ lessonId }: { lessonId: number }) {
   const [session, setSession] = useState<Question[]>([]);
   const [index, setIndex] = useState(0);
-  const [picked, setPicked] = useState<number[]>([]); // indices into question.words
+  const [picked, setPicked] = useState<number[]>([]);
   const [status, setStatus] = useState<Status>("answering");
   const [progress, setProgress] = useState<LessonProgress | null>(null);
   const [history, setHistory] = useState<("correct" | "wrong")[]>([]);
@@ -42,7 +49,6 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
   const [showHelp, setShowHelp] = useState(false);
   const [revealed, setRevealed] = useState(false);
 
-  // Init: load session + progress
   useEffect(() => {
     setSession(generateSession(SESSION_SIZE));
     const p = loadProgress(lessonId);
@@ -77,7 +83,6 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
     [correct, current, lessonId, progress]
   );
 
-  // Auto-check when token count matches
   useEffect(() => {
     if (!current || status !== "answering") return;
     if (builtTokens.length === correct.length && builtTokens.length > 0) {
@@ -87,8 +92,8 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
 
   if (!current || !progress) {
     return (
-      <div className="flex min-h-[50vh] items-center justify-center text-slate-400">
-        Memuat latihan…
+      <div className="flex min-h-[50vh] items-center justify-center text-ink-muted">
+        Memuat sesi latihan…
       </div>
     );
   }
@@ -99,15 +104,13 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
   const wrongCount = history.filter((a) => a === "wrong").length;
 
   const tapWord = (i: number) => {
-    if (status !== "answering") return;
-    if (picked.includes(i)) return;
+    if (status !== "answering" || picked.includes(i)) return;
     setPicked([...picked, i]);
   };
 
   const undo = () => {
     if (status === "correct") return;
     if (status === "wrong") {
-      // re-enable retry
       setStatus("answering");
       setRevealed(false);
       setPicked(picked.slice(0, -1));
@@ -118,7 +121,6 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
 
   const next = () => {
     if (index + 1 >= session.length) {
-      // Generate a fresh session and continue
       setSession(generateSession(SESSION_SIZE));
       setIndex(0);
     } else {
@@ -129,43 +131,47 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
     setRevealed(false);
   };
 
-  const reveal = () => setRevealed(true);
-
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50">
-      {/* ── Top bar (header) ──────────────────────────────────── */}
-      <header className="sticky top-0 z-20 bg-emerald-600 text-white shadow">
+    <div className="flex min-h-screen flex-col bg-paper">
+      {/* ── Header ─────────────────────────────────────────── */}
+      <header className="sticky top-0 z-20 border-b border-paper-line bg-paper-surface/95 backdrop-blur">
         <div className="mx-auto flex max-w-2xl items-center gap-3 px-4 py-3">
           <Link
             href={`/lesson/${lessonId}`}
             aria-label="Kembali ke pelajaran"
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white hover:bg-white/25"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-paper-line text-ink-soft hover:border-indigo hover:text-indigo"
           >
             ←
           </Link>
-          <div className="flex-1 truncate">
-            <div className="text-xs text-emerald-100">Pelajaran {lessonId}</div>
-            <div className="truncate text-sm font-semibold">
-              Bentuk Dasar Kata Kerja
+          <div className="min-w-0 flex-1 truncate">
+            <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-ink-muted">
+              Pelajaran {lessonId} · LinguaID
+            </div>
+            <div className="truncate font-display text-base font-semibold text-ink">
+              Bentuk dasar kata kerja
             </div>
           </div>
-          <div className="flex items-center gap-2 text-sm font-bold">
-            <span className="flex items-center gap-1 rounded-full bg-white/15 px-2.5 py-1">
+          <div className="flex items-center gap-1.5 text-xs font-semibold">
+            <span
+              className={`flex items-center gap-1 rounded-full px-2.5 py-1 ${
+                passed
+                  ? "bg-state-soft text-state"
+                  : "bg-orange-soft text-orange-dark"
+              }`}
+            >
               <span aria-hidden>★</span>
-              <span className={passed ? "text-yellow-200" : ""}>
-                {score.toFixed(1)}
-              </span>
+              {score.toFixed(1)}
             </span>
-            <span className="flex items-center gap-1 rounded-full bg-emerald-500/40 px-2.5 py-1">
+            <span className="flex items-center gap-1 rounded-full bg-correct-soft px-2 py-1 text-correct">
               ✓ {correctCount}
             </span>
-            <span className="flex items-center gap-1 rounded-full bg-rose-500/40 px-2.5 py-1">
+            <span className="flex items-center gap-1 rounded-full bg-wrong-soft px-2 py-1 text-wrong">
               ✗ {wrongCount}
             </span>
           </div>
         </div>
 
-        {/* History bar */}
+        {/* History strip */}
         <div className="mx-auto flex max-w-2xl gap-0.5 px-4 pb-2">
           {Array.from({ length: 20 }).map((_, i) => {
             const a = history[history.length - 20 + i];
@@ -174,10 +180,10 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
                 key={i}
                 className={`h-1.5 flex-1 rounded-sm ${
                   a === "correct"
-                    ? "bg-emerald-300"
+                    ? "bg-correct"
                     : a === "wrong"
-                    ? "bg-rose-400"
-                    : "bg-white/20"
+                    ? "bg-wrong"
+                    : "bg-paper-line"
                 }`}
               />
             );
@@ -185,64 +191,66 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
         </div>
       </header>
 
-      {/* ── Main ──────────────────────────────────────────────── */}
-      <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-4 py-5">
-        {/* Tense + kind */}
+      {/* ── Main ───────────────────────────────────────────── */}
+      <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-4 py-6">
         <div className="flex items-center justify-center gap-2">
           <TenseChip tense={current.tense} />
-          <span className="rounded-full bg-slate-200 px-3 py-1 text-xs font-semibold text-slate-700">
+          <span className="rounded-full border border-paper-line bg-paper-surface px-3 py-1 font-display text-xs font-semibold text-ink-soft">
             {KIND_LABEL[current.kind]}
           </span>
         </div>
 
-        {/* Indonesian sentence */}
-        <div className="mt-5 rounded-2xl bg-white px-5 py-7 text-center shadow-sm ring-1 ring-slate-200">
-          <div className="text-xs font-semibold uppercase tracking-widest text-slate-400">
+        {/* Indonesian prompt */}
+        <div className="mt-6 rounded-lg border border-paper-line bg-paper-surface px-6 py-8 text-center shadow-soft">
+          <div className="text-[10px] font-bold uppercase tracking-[0.18em] text-ink-muted">
             Terjemahkan ke bahasa Inggris
           </div>
-          <div className="mt-2 text-2xl font-bold leading-snug text-slate-900 sm:text-3xl">
+          <p className="mt-3 font-display text-2xl font-semibold leading-snug text-ink sm:text-3xl">
             {current.indonesian.sentence}
-          </div>
+          </p>
           {current.indonesian.hint && (
-            <div className="mt-2 text-xs italic text-amber-700">
+            <p className="mt-2 text-xs italic text-past">
               ({current.indonesian.hint})
-            </div>
+            </p>
           )}
-          <div className="mt-1 text-xs text-slate-500">
+          <p className="mt-1 text-xs text-ink-muted">
             soal {index + 1} / {session.length}
-          </div>
+          </p>
         </div>
 
-        {/* Built answer area */}
+        {/* Answer area */}
         <div
-          className={`mt-4 flex min-h-[56px] flex-wrap items-center justify-center gap-2 rounded-2xl border-2 border-dashed px-3 py-3 transition ${
+          className={`mt-4 flex min-h-[56px] flex-wrap items-center justify-center gap-2 rounded-lg border-2 border-dashed px-3 py-3 transition ${
             status === "correct"
-              ? "border-emerald-400 bg-emerald-50"
+              ? "border-correct bg-correct-soft"
               : status === "wrong"
-              ? "border-rose-400 bg-rose-50"
-              : "border-slate-300 bg-white"
+              ? "border-wrong bg-wrong-soft"
+              : "border-paper-line bg-paper-surface"
           }`}
         >
           {builtTokens.length === 0 ? (
-            <span className="text-sm text-slate-400">
-              Tap kata di bawah untuk merangkai jawaban…
+            <span className="text-sm italic text-ink-muted">
+              Tap kata-kata di bawah secara berurutan…
             </span>
           ) : (
             <>
               {builtTokens.map((w, i) => (
                 <span
                   key={i}
-                  className="rounded-xl bg-slate-800 px-3 py-1.5 text-base font-semibold text-white shadow-sm"
+                  className="rounded-md bg-ink px-3 py-1.5 font-display text-base font-semibold text-paper shadow-soft"
                 >
                   {w}
                 </span>
               ))}
-              {status === "answering" && (
-                <span className="text-lg text-slate-400">{current.punct}</span>
-              )}
-              {status !== "answering" && (
-                <span className="text-lg text-slate-700">{current.punct}</span>
-              )}
+              <span
+                className={
+                  status === "answering"
+                    ? "text-lg text-ink-muted"
+                    : "text-lg text-ink"
+                }
+              >
+                {current.punct}
+              </span>
             </>
           )}
         </div>
@@ -256,10 +264,10 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
                 key={i}
                 disabled={used || status !== "answering"}
                 onClick={() => tapWord(i)}
-                className={`rounded-xl border-2 px-3 py-3 text-base font-semibold transition active:scale-95 ${
+                className={`rounded-md border-2 px-3 py-3 font-display text-base font-semibold transition active:scale-95 ${
                   used
-                    ? "border-slate-200 bg-slate-100 text-slate-300 opacity-50"
-                    : "border-slate-200 bg-white text-slate-900 hover:border-emerald-400 hover:bg-emerald-50"
+                    ? "border-paper-line bg-paper-soft text-ink-muted opacity-40"
+                    : "border-paper-line bg-paper-surface text-ink hover:-translate-y-0.5 hover:border-orange hover:bg-orange-soft hover:text-orange-dark"
                 }`}
               >
                 {w}
@@ -270,8 +278,8 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
 
         {/* Feedback */}
         {status === "correct" && (
-          <div className="mt-4 rounded-xl border-2 border-emerald-300 bg-emerald-50 px-4 py-3 text-center text-emerald-800">
-            <div className="text-lg font-bold">✓ Benar!</div>
+          <div className="mt-4 rounded-lg border-2 border-correct bg-correct-soft px-4 py-3 text-center text-correct">
+            <div className="font-display text-lg font-bold">✓ Tepat!</div>
             <div className="mt-1 text-sm">
               {current.english.join(" ")}
               {current.punct}
@@ -279,11 +287,13 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
           </div>
         )}
         {status === "wrong" && (
-          <div className="mt-4 rounded-xl border-2 border-rose-300 bg-rose-50 px-4 py-3 text-center text-rose-800">
-            <div className="text-lg font-bold">✗ Belum tepat</div>
+          <div className="mt-4 rounded-lg border-2 border-wrong bg-wrong-soft px-4 py-3 text-center text-wrong">
+            <div className="font-display text-lg font-bold">
+              ✗ Belum tepat
+            </div>
             {revealed ? (
               <div className="mt-1 text-sm">
-                Jawaban benar:{" "}
+                Yang benar:{" "}
                 <strong>
                   {current.english.join(" ")}
                   {current.punct}
@@ -291,8 +301,8 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
               </div>
             ) : (
               <button
-                onClick={reveal}
-                className="mt-1 text-sm text-rose-700 underline hover:text-rose-900"
+                onClick={() => setRevealed(true)}
+                className="mt-1 text-sm underline hover:opacity-80"
               >
                 Tampilkan jawaban
               </button>
@@ -300,12 +310,11 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
           </div>
         )}
 
-        {/* Next button when feedback shown */}
         {status !== "answering" && (
           <button
             onClick={next}
             autoFocus
-            className="mt-4 rounded-xl bg-emerald-600 px-6 py-3 text-base font-semibold text-white shadow hover:bg-emerald-700"
+            className="mt-4 rounded-md bg-indigo px-6 py-3 font-display text-base font-semibold text-white shadow-card hover:bg-indigo-dark"
           >
             Soal berikutnya →
           </button>
@@ -313,42 +322,49 @@ export function WordTapTrainer({ lessonId }: { lessonId: number }) {
 
         <div className="flex-1" />
 
-        {/* ── Bottom panel: 4 tombol ─────────────────────────── */}
-        <nav className="sticky bottom-0 -mx-4 mt-6 grid grid-cols-4 gap-1 border-t border-slate-200 bg-white px-2 py-2 shadow-[0_-2px_8px_rgba(0,0,0,0.04)]">
+        {/* Bottom panel */}
+        <nav className="sticky bottom-0 -mx-4 mt-6 grid grid-cols-4 gap-1 border-t border-paper-line bg-paper-surface/95 px-2 py-2 backdrop-blur">
           <button
             onClick={undo}
             disabled={picked.length === 0 && status === "answering"}
-            className="flex flex-col items-center gap-0.5 rounded-lg px-1 py-2 text-[11px] font-medium text-slate-700 hover:bg-rose-50 disabled:opacity-40"
+            className="flex flex-col items-center gap-0.5 rounded-md px-1 py-2 text-[11px] font-medium text-ink-soft hover:bg-orange-soft hover:text-orange-dark disabled:opacity-40"
           >
-            <span className="text-lg" aria-hidden>↶</span>
-            Ups, salah
+            <span className="text-lg" aria-hidden>
+              ↶
+            </span>
+            Ulang langkah
           </button>
           <button
             onClick={() => setShowHint(true)}
-            className="flex flex-col items-center gap-0.5 rounded-lg px-1 py-2 text-[11px] font-medium text-slate-700 hover:bg-amber-50"
+            className="flex flex-col items-center gap-0.5 rounded-md px-1 py-2 text-[11px] font-medium text-ink-soft hover:bg-ask-soft hover:text-ask"
           >
-            <span className="text-lg" aria-hidden>💡</span>
+            <span className="text-lg" aria-hidden>
+              ⌖
+            </span>
             Petunjuk
           </button>
           <button
             onClick={() => setShowHelp(true)}
-            className="flex flex-col items-center gap-0.5 rounded-lg px-1 py-2 text-[11px] font-medium text-slate-700 hover:bg-sky-50"
+            className="flex flex-col items-center gap-0.5 rounded-md px-1 py-2 text-[11px] font-medium text-ink-soft hover:bg-paper-soft hover:text-indigo"
           >
-            <span className="text-lg" aria-hidden>?</span>
-            Bantuan
+            <span className="text-lg" aria-hidden>
+              ❖
+            </span>
+            Teori
           </button>
           <button
             disabled
-            title="Segera hadir"
-            className="flex flex-col items-center gap-0.5 rounded-lg px-1 py-2 text-[11px] font-medium text-slate-400 opacity-60"
+            title="Akan datang di versi berikutnya"
+            className="flex flex-col items-center gap-0.5 rounded-md px-1 py-2 text-[11px] font-medium text-ink-muted opacity-60"
           >
-            <span className="text-lg" aria-hidden>🎤</span>
+            <span className="text-lg" aria-hidden>
+              ◉
+            </span>
             Jawaban lisan
           </button>
         </nav>
       </main>
 
-      {/* Modals */}
       {showHint && (
         <Lesson1HintModal
           question={current}

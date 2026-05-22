@@ -1,16 +1,16 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { getLessonById, lessons } from "@/data/lessons";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ConjugationTable } from "@/components/ConjugationTable";
 import { VerbConjugation } from "@/components/VerbConjugation";
 import { SummaryGrid } from "@/components/SummaryGrid";
-import { PolyglotTable } from "@/components/PolyglotTable";
+import { TheoryGrid } from "@/components/TheoryGrid";
 import { VocabularyList } from "@/components/VocabularyList";
 import { PhraseList } from "@/components/PhraseList";
 import { ExampleList } from "@/components/ExampleList";
 import { LessonNav } from "@/components/LessonNav";
-import Link from "next/link";
 
 export function generateStaticParams() {
   return lessons.map((l) => ({ id: l.id.toString() }));
@@ -25,7 +25,7 @@ export async function generateMetadata({
   const lesson = getLessonById(parseInt(id, 10));
   if (!lesson) return {};
   return {
-    title: `${lesson.title} | Poliglot English`,
+    title: `${lesson.title} | LinguaID`,
     description: lesson.goal,
   };
 }
@@ -47,57 +47,60 @@ export default async function LessonPage({
       <main className="mx-auto max-w-3xl px-4 py-8">
         {/* Progress bar */}
         <div className="mb-6">
-          <div className="mb-1 flex items-center justify-between text-xs text-slate-500">
-            <span>Pelajaran {lesson.id} dari 16</span>
+          <div className="mb-1.5 flex items-center justify-between text-xs font-medium text-ink-muted">
+            <span className="font-display uppercase tracking-[0.18em]">
+              Pelajaran {lesson.id} dari 16
+            </span>
             <span>{Math.round(progress)}%</span>
           </div>
-          <div className="h-2 overflow-hidden rounded-full bg-slate-200">
+          <div className="h-1.5 overflow-hidden rounded-full bg-paper-line">
             <div
-              className="h-full bg-brand-500 transition-all"
+              className="h-full bg-indigo transition-all"
               style={{ width: `${progress}%` }}
             />
           </div>
         </div>
 
-        {/* Title */}
-        <h1 className="text-3xl font-bold leading-tight text-slate-900 sm:text-4xl">
+        <h1 className="font-display text-4xl font-extrabold leading-tight tracking-tight text-ink sm:text-5xl">
           {lesson.title}
         </h1>
-        <p className="mt-2 text-lg text-slate-600">{lesson.subtitle}</p>
+        <p className="mt-3 text-lg text-ink-soft">{lesson.subtitle}</p>
 
         {/* Goal */}
-        <div className="mt-6 rounded-2xl border border-brand-200 bg-brand-50 p-5">
-          <div className="text-xs font-semibold uppercase tracking-wider text-brand-700">
+        <div className="mt-7 rounded-lg border-l-4 border-orange bg-orange-soft/60 p-5">
+          <div className="font-display text-xs font-bold uppercase tracking-[0.18em] text-orange-dark">
             Tujuan pelajaran
           </div>
-          <div className="mt-1 text-slate-800">{lesson.goal}</div>
+          <p className="mt-1 text-ink">{lesson.goal}</p>
         </div>
 
         {/* Intro */}
-        <section className="mt-8 text-slate-700 leading-relaxed">
+        <section className="mt-8 leading-relaxed text-ink-soft">
           {lesson.intro}
         </section>
 
-        {/* Grammar sections */}
-        <section className="mt-10 space-y-8">
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-500">
-            Tata Bahasa
+        {/* Grammar */}
+        <section className="mt-12 space-y-10">
+          <h2 className="font-display text-xs font-bold uppercase tracking-[0.18em] text-ink-muted">
+            Tata bahasa
           </h2>
           {lesson.grammar.map((g, i) => (
             <div key={i}>
-              <h3 className="text-xl font-semibold text-slate-900">
+              <h3 className="font-display text-2xl font-bold text-ink">
                 {g.heading}
               </h3>
-              <p className="mt-2 text-slate-700">{g.explanation}</p>
-              {g.polyglotTable && (
+              <p className="mt-2 leading-relaxed text-ink-soft">
+                {g.explanation}
+              </p>
+              {g.theoryGrid && (
                 <div className="my-5">
-                  <PolyglotTable
+                  <TheoryGrid
                     verb={{
-                      v1: g.polyglotTable.v1,
-                      v1s: g.polyglotTable.v1s,
-                      v2: g.polyglotTable.v2,
+                      v1: g.theoryGrid.v1,
+                      v1s: g.theoryGrid.v1s,
+                      v2: g.theoryGrid.v2,
                     }}
-                    caption={g.polyglotTable.caption}
+                    caption={g.theoryGrid.caption}
                   />
                 </div>
               )}
@@ -106,8 +109,11 @@ export default async function LessonPage({
               {g.table && <ConjugationTable data={g.table} />}
               {g.examples && <ExampleList items={g.examples} />}
               {g.note && (
-                <div className="mt-3 rounded-md border-l-4 border-amber-400 bg-amber-50 px-4 py-2 text-sm text-amber-900">
-                  <strong>Catatan:</strong> {g.note}
+                <div className="mt-3 rounded-md border-l-4 border-orange bg-orange-soft/40 px-4 py-2.5 text-sm text-ink">
+                  <strong className="font-display text-orange-dark">
+                    Catatan —
+                  </strong>{" "}
+                  {g.note}
                 </div>
               )}
             </div>
@@ -115,11 +121,11 @@ export default async function LessonPage({
         </section>
 
         {/* Vocabulary */}
-        <section className="mt-12">
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+        <section className="mt-14">
+          <h2 className="font-display text-xs font-bold uppercase tracking-[0.18em] text-ink-muted">
             Kosakata
           </h2>
-          <h3 className="mt-1 text-xl font-semibold text-slate-900">
+          <h3 className="mt-1 font-display text-2xl font-bold text-ink">
             {lesson.vocabulary.length} kata penting
           </h3>
           <div className="mt-4">
@@ -128,12 +134,12 @@ export default async function LessonPage({
         </section>
 
         {/* Phrases */}
-        <section className="mt-12">
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-500">
-            Frasa Praktis
+        <section className="mt-14">
+          <h2 className="font-display text-xs font-bold uppercase tracking-[0.18em] text-ink-muted">
+            Frasa praktis
           </h2>
-          <h3 className="mt-1 text-xl font-semibold text-slate-900">
-            Frasa siap pakai
+          <h3 className="mt-1 font-display text-2xl font-bold text-ink">
+            Siap dipakai sekarang
           </h3>
           <div className="mt-4">
             <PhraseList items={lesson.phrases} />
@@ -141,35 +147,35 @@ export default async function LessonPage({
         </section>
 
         {/* Trainer CTA */}
-        <section className="mt-12">
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-500">
+        <section className="mt-14">
+          <h2 className="font-display text-xs font-bold uppercase tracking-[0.18em] text-ink-muted">
             Latihan
           </h2>
           <Link
             href={`/lesson/${lesson.id}/latihan`}
-            className="mt-3 block overflow-hidden rounded-3xl border border-brand-200 bg-gradient-to-br from-brand-50 via-white to-amber-50 p-6 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-400 hover:shadow-md sm:p-8"
+            className="mt-3 block overflow-hidden rounded-lg border-2 border-indigo bg-paper-surface p-6 shadow-card transition hover:-translate-y-0.5 hover:bg-paper-soft sm:p-8"
           >
             <div className="flex items-start gap-5">
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-brand-600 text-2xl text-white shadow-sm">
-                ▶
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-md bg-indigo font-display text-2xl text-paper shadow-soft">
+                ▸
               </div>
               <div className="flex-1">
-                <div className="text-xl font-bold text-slate-900 sm:text-2xl">
-                  Buka Latihan Pelajaran {lesson.id}
+                <div className="font-display text-2xl font-bold text-ink sm:text-3xl">
+                  Mulai sesi rangkai-kata
                 </div>
-                <div className="mt-1 text-sm text-slate-600">
-                  {lesson.exercises.length} latihan interaktif — terjemahan,
-                  pilihan ganda, dan isi titik-titik. Satu pertanyaan per
-                  layar, dengan skor di akhir.
-                </div>
+                <p className="mt-1 text-sm text-ink-soft">
+                  Satu pertanyaan per layar, panel kata di bawah, nilai
+                  realtime di atas. Tutup kapan saja — progres tersimpan
+                  otomatis.
+                </p>
                 <div className="mt-4 flex flex-wrap items-center gap-2 text-xs">
-                  <span className="rounded-full bg-white px-3 py-1 font-medium text-slate-700 ring-1 ring-slate-200">
-                    {lesson.exercises.length} pertanyaan
+                  <span className="rounded-full bg-paper-tint px-3 py-1 font-medium text-ink-soft">
+                    25 soal per sesi
                   </span>
-                  <span className="rounded-full bg-white px-3 py-1 font-medium text-slate-700 ring-1 ring-slate-200">
-                    ~{Math.max(3, Math.ceil(lesson.exercises.length * 0.7))} menit
+                  <span className="rounded-full bg-paper-tint px-3 py-1 font-medium text-ink-soft">
+                    ~5 menit
                   </span>
-                  <span className="ml-auto font-semibold text-brand-700">
+                  <span className="ml-auto font-display font-bold text-orange">
                     Mulai →
                   </span>
                 </div>
@@ -178,7 +184,6 @@ export default async function LessonPage({
           </Link>
         </section>
 
-        {/* Navigation */}
         <LessonNav current={lesson.id} />
       </main>
       <Footer />

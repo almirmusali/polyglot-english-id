@@ -2,7 +2,7 @@
 // Skor dihitung sebagai rata-rata dari maks. 20 percobaan terakhir,
 // dipetakan ke skala 0.0–5.0. Lulus saat skor ≥ 4.5.
 
-const KEY_PREFIX = "poliglot:lesson:";
+const KEY_PREFIX = "linguaid:lesson:";
 const WINDOW_SIZE = 20;
 export const PASS_THRESHOLD = 4.5;
 

@@ -1,31 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   LinguaID — design tokens
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #0a0a0a;
+  /* ── Brand ── */
+  --c-primary: #1e3a8a; /* indigo deep */
+  --c-primary-soft: #eef2ff;
+  --c-primary-medium: #6366f1;
+  --c-primary-dark: #1e2a6c;
+
+  --c-accent: #f97316; /* sunrise orange */
+  --c-accent-soft: #fff7ed;
+  --c-accent-medium: #fb923c;
+  --c-accent-dark: #ea580c;
+
+  /* ── Surfaces ── */
+  --c-bg: #fefaf2; /* warm cream */
+  --c-bg-tint: #f6efdf;
+  --c-surface: #ffffff;
+  --c-surface-soft: #fbf8f1;
+  --c-line: #e7e0cf;
+  --c-line-strong: #cdc4b0;
+
+  /* ── Text ── */
+  --c-ink: #1a1a2e; /* near-black with cool tint */
+  --c-ink-soft: #4a5568;
+  --c-ink-muted: #8b8b9c;
+
+  /* ── Semantic (table columns) ── */
+  --c-ask: #7c3aed; /* violet 600 */
+  --c-ask-soft: #f3eaff;
+  --c-ask-tint: #ede4fc;
+
+  --c-state: #0d9488; /* teal 600 */
+  --c-state-soft: #ecfdf5;
+  --c-state-tint: #d1fae5;
+
+  --c-deny: #c2410c; /* burnt orange */
+  --c-deny-soft: #ffedd5;
+  --c-deny-tint: #fed7aa;
+
+  /* ── Status ── */
+  --c-correct: #15803d;
+  --c-correct-soft: #dcfce7;
+  --c-wrong: #be123c;
+  --c-wrong-soft: #ffe4e6;
+
+  /* ── Tenses ── */
+  --c-future: #4f46e5; /* indigo */
+  --c-future-soft: #eef2ff;
+  --c-present: #0d9488; /* teal */
+  --c-present-soft: #ccfbf1;
+  --c-past: #d97706; /* amber */
+  --c-past-soft: #fef3c7;
+
+  /* ── Typography ── */
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, sans-serif;
+
+  /* ── Shape ── */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+
+  --shadow-sm: 0 1px 2px rgba(26, 26, 46, 0.05);
+  --shadow-md: 0 4px 18px -4px rgba(26, 26, 46, 0.08);
+  --shadow-lg: 0 12px 40px -10px rgba(30, 58, 138, 0.18);
 }
 
+/* ============================================================
+   Base
+   ============================================================ */
 html,
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--c-bg);
+  color: var(--c-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* table styling helper */
+h1,
+h2,
+h3,
+.font-display {
+  font-family: var(--font-display);
+  font-feature-settings: "ss01", "ss02";
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   Components
+   ============================================================ */
 .tbl {
   @apply w-full border-collapse;
 }
 .tbl th,
 .tbl td {
-  @apply border border-slate-200 px-3 py-2 text-left text-sm;
+  border: 1px solid var(--c-line);
+  padding: 0.6rem 0.85rem;
+  text-align: left;
+  font-size: 0.875rem;
 }
 .tbl th {
-  @apply bg-slate-50 font-semibold;
+  background: var(--c-surface-soft);
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+/* Underline that draws under links of the brand */
+.linguaid-link {
+  background-image: linear-gradient(transparent 70%, var(--c-accent) 70%);
+  background-size: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 200ms ease;
+}
+.linguaid-link:hover {
+  background-size: 100% 100%;
+}
+
+/* Subtle paper texture for hero */
+.linguaid-paper {
+  background-color: var(--c-bg);
+  background-image:
+    radial-gradient(at 12% 18%, rgba(30, 58, 138, 0.06) 0px, transparent 50%),
+    radial-gradient(at 88% 82%, rgba(249, 115, 22, 0.06) 0px, transparent 50%);
 }

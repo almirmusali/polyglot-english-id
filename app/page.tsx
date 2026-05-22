@@ -7,128 +7,146 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <main className="mx-auto max-w-6xl px-4 py-10">
-        {/* Hero */}
-        <section className="rounded-3xl bg-gradient-to-br from-brand-50 via-white to-amber-50 px-6 py-12 sm:px-12 sm:py-16">
-          <div className="max-w-3xl">
-            <div className="mb-3 inline-block rounded-full bg-brand-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-700">
-              Bahasa Inggris dalam 16 Pelajaran
-            </div>
-            <h1 className="text-4xl font-bold leading-tight text-slate-900 sm:text-5xl">
-              Belajar bahasa Inggris dengan metode{" "}
-              <span className="text-brand-600">Poliglot</span>
+      <main>
+        {/* ── Hero ─────────────────────────────────────────── */}
+        <section className="linguaid-paper border-b border-paper-line">
+          <div className="mx-auto max-w-6xl px-4 py-14 sm:py-20">
+            <span className="inline-block rounded-full border border-paper-line bg-paper-surface px-3 py-1 font-display text-xs font-semibold uppercase tracking-[0.18em] text-indigo">
+              Edisi pemula Indonesia
+            </span>
+            <h1 className="mt-4 max-w-3xl font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-6xl">
+              Susun bahasa Inggris{" "}
+              <span className="relative inline-block">
+                <span className="relative z-10">kata demi kata.</span>
+                <span
+                  className="absolute inset-x-0 bottom-1 z-0 h-3 -skew-x-3 bg-orange/40"
+                  aria-hidden
+                />
+              </span>
             </h1>
-            <p className="mt-4 text-lg text-slate-700">
-              Sistem cepat untuk pelajar Indonesia: kuasai{" "}
-              <strong>kerangka tata bahasa</strong> bahasa Inggris hanya dalam
-              16 pelajaran singkat. Tanpa hafalan kosong — semua dijelaskan
-              dalam bahasa Indonesia dengan contoh praktis.
+            <p className="mt-5 max-w-2xl text-lg text-ink-soft sm:text-xl">
+              Tap setiap kata sesuai urutan, kunci tiga waktu (Sekarang —
+              Lampau — Akan datang), dan biarkan tabel teori membimbing.
+              Tanpa hafalan kosong, tanpa kuliah panjang.
             </p>
-            <div className="mt-6 flex flex-wrap items-center gap-3">
+
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-                href="#pelajaran"
-                className="rounded-lg bg-brand-600 px-5 py-3 font-medium text-white shadow-sm hover:bg-brand-700"
+                href="#daftar"
+                className="inline-flex items-center gap-2 rounded-md bg-indigo px-5 py-3 font-semibold text-white shadow-card transition hover:bg-indigo-dark"
               >
-                Mulai Pelajaran 1 →
+                Mulai dari Pelajaran 1
+                <span aria-hidden>→</span>
               </a>
               <a
-                href="#tentang"
-                className="rounded-lg border border-slate-300 bg-white px-5 py-3 font-medium text-slate-700 hover:border-slate-400"
+                href="#metode"
+                className="inline-flex items-center gap-2 rounded-md border border-paper-line-strong bg-paper-surface px-5 py-3 font-semibold text-ink transition hover:border-indigo"
               >
-                Tentang metode ini
+                Pelajari metodenya
               </a>
             </div>
-            <div className="mt-8 flex flex-wrap gap-6 text-sm text-slate-600">
-              <div>
-                <div className="text-2xl font-bold text-slate-900">16</div>
-                <div>Pelajaran lengkap</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-slate-900">200+</div>
-                <div>Kosakata penting</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-slate-900">100+</div>
-                <div>Latihan interaktif</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-slate-900">100%</div>
-                <div>Gratis</div>
-              </div>
+
+            {/* Stats */}
+            <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4 sm:gap-10">
+              {[
+                { value: "16", label: "Pelajaran" },
+                { value: "20+", label: "Kata kerja inti" },
+                { value: "9", label: "Bentuk kalimat" },
+                { value: "0₽", label: "Selalu gratis" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <div className="font-display text-3xl font-extrabold text-indigo sm:text-4xl">
+                    {s.value}
+                  </div>
+                  <div className="mt-1 text-xs uppercase tracking-[0.18em] text-ink-muted">
+                    {s.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Lessons grid */}
-        <section id="pelajaran" className="mt-14">
-          <div className="mb-6 flex items-end justify-between">
+        {/* ── Daftar pelajaran ─────────────────────────────── */}
+        <section id="daftar" className="mx-auto max-w-6xl px-4 py-14">
+          <div className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="text-2xl font-bold text-slate-900">
-                16 Pelajaran
+              <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
+                16 langkah, satu kerangka
               </h2>
-              <p className="mt-1 text-slate-600">
-                Mulailah dari pelajaran pertama. Setiap pelajaran membangun
-                dasar untuk yang berikutnya.
+              <p className="mt-2 max-w-2xl text-ink-soft">
+                Setiap kartu menampilkan nilai Anda di pelajaran itu (0.0–5.0).
+                Lingkaran berubah dari oranye ke teal saat Anda mencapai 4.5
+                atau lebih.
               </p>
             </div>
+            <span className="text-xs uppercase tracking-[0.18em] text-ink-muted">
+              Mulai dari atas, urut ke bawah
+            </span>
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+          <div className="grid gap-3 sm:grid-cols-2">
             {lessons.map((lesson) => (
               <LessonCard key={lesson.id} lesson={lesson} />
             ))}
           </div>
         </section>
 
-        {/* About */}
+        {/* ── Metode ───────────────────────────────────────── */}
         <section
-          id="tentang"
-          className="mt-16 rounded-3xl border border-slate-200 bg-white p-8 sm:p-12"
+          id="metode"
+          className="border-t border-paper-line bg-paper-soft"
         >
-          <h2 className="text-2xl font-bold text-slate-900">
-            Tentang metode 16 pelajaran
-          </h2>
-          <div className="mt-4 space-y-4 text-slate-700">
-            <p>
-              Metode ini terinspirasi dari pendekatan ahli poliglot terkenal —
-              fokus pada <strong>kerangka tata bahasa</strong> bahasa Inggris
-              alih-alih menghafal ribuan kata sekaligus. Idenya sederhana:
-              kuasai 80% dari struktur bahasa hanya dengan 20% usaha.
+          <div className="mx-auto max-w-6xl px-4 py-14">
+            <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
+              Bagaimana LinguaID mengajar
+            </h2>
+            <p className="mt-3 max-w-3xl text-ink-soft">
+              Daripada menghafal daftar kata, Anda dilatih{" "}
+              <strong>membentuk</strong> kalimat berulang-ulang dari
+              komponennya. Pola yang sama — tiga waktu kali tiga jenis
+              kalimat — diterapkan ke puluhan kata kerja sampai gerakannya
+              terasa alami.
             </p>
-            <p>
-              Setiap pelajaran berisi <strong>penjelasan dalam bahasa
-              Indonesia</strong>, tabel konjugasi yang mudah dihafal, contoh
-              kalimat dengan terjemahan, kosakata inti dengan pengucapan, dan
-              latihan interaktif untuk menguatkan pengetahuan.
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-3">
+              {[
+                {
+                  title: "Satu kerangka",
+                  body: "Sembilan bentuk kalimat dalam satu tabel. Sekali kuasai, berlaku untuk semua kata kerja.",
+                  k: "01",
+                },
+                {
+                  title: "Tap, jangan ketik",
+                  body: "Kata-kata sudah disiapkan — Anda hanya merangkainya. Lebih cepat dari pena, lebih ingat dari membaca.",
+                  k: "02",
+                },
+                {
+                  title: "Nilai yang jujur",
+                  body: "Nilai 0.0–5.0 dihitung dari 20 percobaan terakhir, disimpan lokal. Lulus saat ≥ 4.5.",
+                  k: "03",
+                },
+              ].map((c) => (
+                <div
+                  key={c.title}
+                  className="rounded-lg border border-paper-line bg-paper-surface p-6 shadow-soft"
+                >
+                  <div className="font-display text-sm font-bold text-orange">
+                    {c.k}
+                  </div>
+                  <h3 className="mt-2 font-display text-xl font-semibold text-ink">
+                    {c.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-ink-soft">{c.body}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-10 max-w-3xl text-sm text-ink-muted">
+              Latihan rutin 15 menit per hari memberi hasil lebih baik
+              daripada satu sesi panjang sekali seminggu. Mulai dari
+              Pelajaran 1 — di sana Anda mendapat seluruh kerangka.
             </p>
-            <p>
-              Disarankan: 1 pelajaran per hari, durasi 20–30 menit. Setelah 16
-              hari Anda akan memiliki fondasi yang kuat untuk percakapan
-              sehari-hari.
-            </p>
-          </div>
-          <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            {[
-              {
-                title: "Berbasis kerangka",
-                desc: "Tata bahasa sebagai tulang punggung — kosakata tumbuh di atasnya.",
-              },
-              {
-                title: "Untuk orang Indonesia",
-                desc: "Penjelasan dalam Bahasa Indonesia, dengan perbandingan yang relevan.",
-              },
-              {
-                title: "Praktis",
-                desc: "Setiap pelajaran punya frasa siap pakai dan latihan langsung.",
-              },
-            ].map((f) => (
-              <div
-                key={f.title}
-                className="rounded-xl border border-slate-200 bg-slate-50 p-4"
-              >
-                <div className="font-semibold text-slate-900">{f.title}</div>
-                <div className="mt-1 text-sm text-slate-600">{f.desc}</div>
-              </div>
-            ))}
           </div>
         </section>
       </main>

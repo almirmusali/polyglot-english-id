@@ -1,7 +1,7 @@
 import type { VerbConjugationData } from "@/data/types";
 
 /**
- * Spesialisasi tabel konjugasi gaya "Poliglot":
+ * Tabel konjugasi tiga kolom (legacy — dipakai oleh pelajaran selain Pelajaran 1):
  * - 3 kolom: Positif (hijau), Negatif (merah), Pertanyaan (biru)
  * - Kelompok kata ganti di sisi kiri tiap baris
  * - Mendukung pewarnaan kata bantu (do/does/did/will, don't/doesn't/didn't/won't)

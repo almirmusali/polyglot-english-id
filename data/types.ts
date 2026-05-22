@@ -34,7 +34,7 @@ export type SummaryGridData = {
   hint?: string;
 };
 
-export type PolyglotTableLessonData = {
+export type TheoryGridLessonData = {
   caption?: string;
   v1: string; // base form
   v1s: string; // 3rd person singular present (+s/+es)
@@ -47,7 +47,7 @@ export type GrammarSection = {
   table?: ConjugationTable;
   conjugation?: VerbConjugationData;
   summaryGrid?: SummaryGridData;
-  polyglotTable?: PolyglotTableLessonData;
+  theoryGrid?: TheoryGridLessonData;
   examples?: ExampleSentence[];
   note?: string;
 };

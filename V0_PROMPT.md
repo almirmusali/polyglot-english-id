@@ -1,88 +1,38 @@
-# Promt untuk v0.dev
+# Prompt untuk v0.dev — LinguaID
 
-Buka [v0.dev](https://v0.dev), tempel teks di bawah ke dalam prompt, lalu klik "Generate". Hasil v0 bisa langsung di-deploy ke Vercel atau di-import sebagai variasi UI baru.
-
----
-
-## Prompt (English — lebih efektif untuk v0)
+Tempel teks di bawah ke v0.dev untuk menghasilkan variasi UI proyek ini.
 
 ```
-Create a modern landing page + lesson reader app called "Poliglot English" — an English-learning web app for Indonesian speakers, inspired by the famous "16 lessons" polyglot method.
+Create a Next.js 14+ App Router + TypeScript + Tailwind app called "LinguaID" — a grammar-learning web app for Indonesian speakers studying English.
 
-REQUIREMENTS:
-- Next.js 14+ App Router, TypeScript, Tailwind CSS, shadcn/ui components
-- Interface language: Bahasa Indonesia (all UI text in Indonesian)
-- Color palette: warm red/orange (brand-600 = #dc2626) on light slate background
-- Typography: clean sans-serif, generous spacing
-- Mobile-first responsive design
+CORE MECHANIC
+Users assemble English sentences by tapping word buttons in order, guided by an Indonesian prompt and a tense chip (Sekarang / Lampau / Akan datang).
 
-PAGES NEEDED:
+VISUAL IDENTITY
+- Brand: LinguaID with a typographic logo (display serif period as accent)
+- Palette: deep indigo (#1e3a8a), sunrise orange (#f97316), warm cream background (#fefaf2)
+- Typography: Fraunces for headings (serif, with character), Inter for body
+- Shape: generous rounded corners (radius 22px for cards), soft diffused shadows
+- All UI text in Bahasa Indonesia
 
-1. Home page (/)
-   - Hero with gradient background: title "Belajar bahasa Inggris dengan metode Poliglot", subtitle "Sistem cepat untuk pelajar Indonesia: kuasai kerangka tata bahasa hanya dalam 16 pelajaran"
-   - Two CTAs: "Mulai Pelajaran 1 →" and "Tentang metode ini"
-   - Stats row: 16 Pelajaran lengkap, 200+ Kosakata, 100+ Latihan, 100% Gratis
-   - Grid of 16 lesson cards (3 columns desktop, 2 tablet, 1 mobile)
-   - Each card: numbered circle, "Pelajaran N" label, title, subtitle, vocab/exercise count
-   - About section explaining the method (3 feature cards)
+PAGES
+1. Home (/) — hero with brand title, lesson grid with score circles (0.0-5.0 in colored badges)
+2. Lesson page (/lesson/[id]) — theory with the unified 9-form table
+3. Trainer (/lesson/[id]/latihan) — full-screen word-tap experience
 
-2. Lesson page (/lesson/[id])
-   - Progress bar at top showing "Pelajaran N dari 16" with percentage
-   - Big title + subtitle
-   - Highlighted "Tujuan pelajaran" (lesson goal) box with brand color
-   - Introduction paragraph
-   - Multiple grammar sections, each with:
-     • heading + explanation
-     • optional conjugation table (English / Bahasa Indonesia columns)
-     • example sentences with translation
-     • optional yellow "Catatan" note box
-   - Vocabulary grid (English word, Indonesian translation, pronunciation in brackets)
-   - Practical phrases list (English with Indonesian translation, brand left-border accent)
-   - Interactive exercises section: text input + "Cek" button, options for multiple choice, "Tampilkan jawaban" reveal
-   - Previous/Next lesson navigation cards at bottom
+THE 9-FORM TABLE (theory & hint share this layout)
+Rows top-to-bottom: Akan datang (Future), Sekarang (Present), Lampau (Past)
+Columns left-to-right: Pertanyaan (violet tint), Pernyataan (teal tint), Negasi (burnt-orange tint)
+Each cell: auxiliary word on the left, pronouns stacked vertically, verb form on the right.
+Present cell split into two sub-groups (I/you/we/they vs he/she/it) with a divider.
 
-CONTENT (16 lessons):
-1. Kata Ganti & "to be" — Pronouns + am/is/are
-2. Tiga Bentuk Waktu — Present/Past/Future pyramid
-3. Pertanyaan & Negasi — do/does/did/will
-4. Kata Kepemilikan & "to have" — possessives + has/have
-5. Artikel (a/an/the) & Bentuk Jamak — articles + plurals
-6. Preposisi — in/on/at + place/time
-7. Kata Kerja Modal — can/must/should/may
-8. Present Continuous — am/is/are + V-ing
-9. Past Simple Irregular Verbs — 30 most common
-10. Bentuk Masa Depan — will vs going to
-11. Present Perfect — have/has + V3
-12. Perbandingan — comparatives & superlatives
-13. Kalimat Pengandaian — conditionals (0/1/2/3)
-14. Kalimat Pasif — passive voice all tenses
-15. Reported Speech — backshift
-16. Rangkuman & Percakapan — phrases, idioms, putting it together
+TRAINER
+- Top bar (indigo): back, lesson title, ★ score, ✓ correct, ✗ wrong
+- Tense chip + sentence-type pill, large Indonesian prompt card
+- Word grid (8 buttons) tapped in order, with dashed answer area
+- Bottom panel: Ulang langkah / Petunjuk / Bantuan / Mic (placeholder)
+- Persist scores in localStorage with key "linguaid:lesson:<id>"
 
-For each lesson include: goal, intro (Indonesian), 3-5 grammar sections, 10-15 vocab items, 5-8 practical phrases, 4-5 interactive exercises.
-
-DESIGN DETAILS:
-- Cards: rounded-2xl, border-slate-200, hover:border-brand-300, subtle shadow on hover
-- Tables: alternating row backgrounds, sticky-style header, rounded container
-- Interactive exercises: immediate feedback (green check ✓ for correct, red ✗ for wrong)
-- Smooth scroll, accessible focus states
-- Header with logo (red P) + nav links: Beranda, Pelajaran, Tentang
-- Footer with subtle text
-
-The vibe should feel like a friendly, modern language app — think Duolingo meets a textbook. Clean, focused, encouraging.
+WRITING
+Friendly, direct Indonesian. Avoid translated-from-Russian feel. Examples emphasize daily life: makan nasi, naik motor, bekerja, belajar.
 ```
-
----
-
-## Setelah generate
-
-1. v0 akan menampilkan preview. Anda bisa:
-   - **"Add to codebase"** — copy ke project lokal
-   - **"Deploy"** — langsung ke Vercel sebagai project baru
-   - **"Edit"** — iterasi UI di v0 dengan instruksi tambahan
-
-2. Untuk integrasi dengan project ini, salin komponen dari hasil v0 ke folder `components/` dan ganti komponen lama jika perlu.
-
-3. Tips: jika ingin lebih spesifik, tambahkan referensi dari project lokal seperti:
-   - "Use the same color scheme as the existing project (brand-600 = #dc2626)"
-   - "Match the structure in data/lessons.ts which has Lesson type with grammar, vocabulary, phrases, exercises"

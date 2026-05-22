@@ -1,17 +1,15 @@
 "use client";
 
 import type { Question } from "@/data/lesson1Bank";
-import { PolyglotTable, type Highlight } from "./PolyglotTable";
+import { TheoryGrid, type TheoryHighlight } from "./TheoryGrid";
 
 /**
- * Petunjuk: tabel teori yang SAMA persis dengan layar Bantuan
- * (baris Akan datang → Sekarang → Lampau, kolom Pertanyaan →
- * Pernyataan → Negasi, kata ganti vertikal, kata bantu di kiri),
- * tetapi dengan SEL AKTIF yang disorot hijau sesuai soal Anda.
+ * Petunjuk — LinguaID.
  *
- * Khusus untuk Sekarang, di mana sel berisi dua sub-grup
- * (I/you/we/they vs he/she/it), sub-grup yang cocok dengan kata
- * ganti soal juga ditandai cincin hijau di dalam sel.
+ * Tabel yang persis sama dengan layar Teori, namun sel yang cocok
+ * dengan soal saat ini diberi cincin oranye merek + tag "INI".
+ * Untuk Sekarang, sub-grup yang cocok dengan kata ganti soal juga
+ * disorot.
  */
 export function Lesson1HintModal({
   question,
@@ -22,66 +20,65 @@ export function Lesson1HintModal({
 }) {
   const { pronoun, verb, tense, kind } = question;
 
-  const highlight: Highlight = {
+  const highlight: TheoryHighlight = {
     tense,
-    // map "negative" → "negation" untuk komponen tabel
-    kind: kind === "negative" ? "negation" : kind === "statement" ? "statement" : "question",
-    pronoun: pronoun.en as Highlight["pronoun"],
+    kind:
+      kind === "negative"
+        ? "negation"
+        : kind === "statement"
+        ? "statement"
+        : "question",
+    pronoun: pronoun.en as TheoryHighlight["pronoun"],
   };
 
-  const verbForms = {
-    v1: verb.v1,
-    v1s: verb.v1s,
-    v2: verb.v2,
-  };
+  const verbForms = { v1: verb.v1, v1s: verb.v1s, v2: verb.v2 };
 
   return (
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/60 sm:items-center"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-ink/60 sm:items-center"
       onClick={onClose}
     >
       <div
-        className="max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-t-3xl bg-white p-5 shadow-2xl sm:rounded-3xl sm:p-6"
+        className="max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-t-xl bg-paper-surface p-5 shadow-pop sm:rounded-lg sm:p-6"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="mb-3 flex items-center justify-between">
+        <div className="mb-4 flex items-start justify-between">
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+            <div className="font-display text-xs font-bold uppercase tracking-[0.18em] text-orange">
               Petunjuk
             </div>
-            <div className="text-xl font-bold text-slate-900">
+            <h2 className="mt-1 font-display text-xl font-bold text-ink">
               {pronoun.en} + <span className="italic">{verb.v1}</span>
-            </div>
-            <div className="mt-0.5 text-sm text-slate-600">
-              Subjek:{" "}
-              <span className="italic">{pronoun.idDisplay}</span> · Kata
-              kerja: <span className="italic">{verb.idVerb}</span>
-            </div>
+            </h2>
+            <p className="mt-0.5 text-sm text-ink-soft">
+              Subjek: <span className="italic">{pronoun.idDisplay}</span> ·
+              Kata kerja: <span className="italic">{verb.idVerb}</span>
+            </p>
           </div>
           <button
             onClick={onClose}
             aria-label="Tutup"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-500 hover:border-slate-400 hover:text-slate-900"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-paper-line text-ink-soft hover:border-indigo hover:text-indigo"
           >
             ✕
           </button>
         </div>
 
-        <PolyglotTable
+        <TheoryGrid
           verb={verbForms}
           highlight={highlight}
-          caption={`Tabel untuk kata kerja "${verb.v1}"`}
+          caption={`Tabel "${verb.v1}" — sel target di bawah`}
         />
 
-        <div className="mt-4 rounded-xl bg-emerald-50 px-4 py-3 text-xs text-emerald-900">
-          💡 Sel yang ditandai <strong>cincin hijau</strong> menunjukkan
-          jawaban untuk soal Anda saat ini.
+        <div className="mt-4 rounded-md border-l-4 border-orange bg-orange-soft/60 p-4 text-sm text-ink">
+          Sel dengan tanda <strong className="text-orange-dark">INI</strong>{" "}
+          adalah jawaban untuk soal Anda sekarang.
           {tense === "present" && (
             <>
               {" "}
-              Di dalam sel itu, sub-grup yang cocok dengan kata ganti{" "}
+              Di dalam sel, sub-grup kata ganti{" "}
               <strong>{pronoun.en}</strong> juga ditandai.
             </>
           )}
@@ -90,9 +87,9 @@ export function Lesson1HintModal({
         <div className="mt-4 text-center">
           <button
             onClick={onClose}
-            className="rounded-xl border border-slate-300 bg-white px-5 py-2 text-sm font-medium text-slate-700 hover:border-slate-400"
+            className="rounded-md border border-paper-line bg-paper-surface px-5 py-2 text-sm font-medium text-ink hover:border-indigo"
           >
-            Tutup petunjuk
+            Tutup
           </button>
         </div>
       </div>

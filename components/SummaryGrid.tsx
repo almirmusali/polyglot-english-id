@@ -1,7 +1,7 @@
 import type { SummaryGridData } from "@/data/types";
 
 /**
- * "9-form" summary grid in the Polyglot style:
+ * "9-form" summary grid (legacy — kept for non-Lesson-1 content):
  *   - 3 rows (3 tenses) × 3 columns (positive / negative / question)
  *   - One verb, one subject — to make the pattern crystal clear
  *   - Auxiliaries highlighted in color

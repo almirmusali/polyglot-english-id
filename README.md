@@ -1,69 +1,51 @@
-# Poliglot English — Belajar bahasa Inggris dalam 16 Pelajaran
+# LinguaID
 
-Aplikasi web untuk orang Indonesia yang ingin belajar bahasa Inggris dengan metode "16 pelajaran". Terinspirasi oleh metode poliglot terkenal yang berfokus pada kerangka tata bahasa daripada hafalan kata.
+> Tata bahasa Inggris untuk orang Indonesia — disusun dari kata demi kata.
 
-## Fitur
+LinguaID adalah aplikasi web open-source untuk belajar tata bahasa Inggris. Inti pembelajarannya sederhana: pengguna **merangkai kalimat dari kata-kata yang sudah disediakan**, dipandu oleh sistem nilai dan tabel teori yang konsisten. Cocok untuk pemula Indonesia yang ingin mengunci pola tiga waktu (Sekarang / Lampau / Akan datang) dengan cepat.
 
-- **16 pelajaran lengkap** dalam Bahasa Indonesia
-- Penjelasan tata bahasa dengan tabel konjugasi
-- 200+ kosakata dengan pengucapan
-- Frasa praktis sehari-hari
-- Latihan interaktif (terjemahan, isi titik-titik, pilihan ganda)
-- Navigasi antar pelajaran + progress bar
-- Responsif (mobile-friendly)
+## Yang ada di dalamnya
 
-## Stack
+- **16 pelajaran**, semuanya dalam bahasa Indonesia
+- **Latihan rangkai-kata** ala kartu — tap kata Inggris untuk membentuk kalimat dari prompt bahasa Indonesia
+- **Chip waktu** (Sekarang / Lampau / Akan datang) untuk menghilangkan ambiguitas tense
+- **Tabel teori 9 bentuk** (3 waktu × 3 jenis kalimat) yang konsisten antara halaman pelajaran dan layar bantuan
+- **Sistem nilai 0.0–5.0** per pelajaran, disimpan di `localStorage`
+- **Bantuan & Petunjuk** kontekstual di layar latihan
 
-- Next.js 14 (App Router)
-- TypeScript
-- Tailwind CSS
+## Tumpukan
 
-## Menjalankan secara lokal
+- Next.js 16 (App Router) + TypeScript
+- Tailwind CSS + sistem token via CSS variables
+- Fraunces (judul) + Inter (badan teks)
+
+## Menjalankan lokal
 
 ```bash
 npm install
 npm run dev
 ```
 
-Buka [http://localhost:3000](http://localhost:3000).
+Buka <http://localhost:3000>.
 
 ## Struktur
 
 ```
-app/
-  page.tsx              # Beranda dengan daftar 16 pelajaran
-  lesson/[id]/page.tsx  # Halaman individual pelajaran
-  layout.tsx
-  globals.css
-components/             # UI components
-data/
-  lessons.ts            # Seluruh konten 16 pelajaran
-  types.ts
+app/                       — App Router
+  page.tsx                 — Beranda + daftar 16 pelajaran
+  lesson/[id]/page.tsx     — Halaman teori per pelajaran
+  lesson/[id]/latihan/     — Layar latihan
+components/                — UI
+  TheoryGrid.tsx           — Tabel 9 bentuk (3 waktu × 3 jenis)
+  WordTapTrainer.tsx       — Latihan rangkai-kata (Pelajaran 1)
+  Lesson1HelpModal.tsx     — Bantuan / teori
+  Lesson1HintModal.tsx     — Petunjuk kontekstual
+data/                      — Konten
+  lessons.ts               — Naskah 16 pelajaran
+  lesson1Bank.ts           — Generator soal Pelajaran 1
+lib/storage.ts             — Persistensi nilai (localStorage)
 ```
 
-## Deploy
+## Lisensi
 
-Project ini siap di-deploy ke Vercel:
-
-```bash
-vercel --prod
-```
-
-## Kurikulum
-
-1. Kata Ganti & "to be"
-2. Tiga Bentuk Waktu (Piramida)
-3. Pertanyaan & Negasi
-4. Kata Kepemilikan & "to have"
-5. Artikel (a/an/the) & Bentuk Jamak
-6. Preposisi
-7. Kata Kerja Modal
-8. Present Continuous
-9. Past Simple — Irregular Verbs
-10. Bentuk Masa Depan (will & going to)
-11. Present Perfect
-12. Perbandingan
-13. Kalimat Pengandaian
-14. Kalimat Pasif
-15. Reported Speech
-16. Rangkuman & Percakapan
+MIT — silakan fork, modifikasi, dan gunakan ulang.

@@ -8,41 +8,41 @@ export const lessons: Lesson[] = [
     id: 1,
     slug: "bentuk-dasar-kata-kerja",
     title: "Pelajaran 1 — Bentuk Dasar Kata Kerja",
-    subtitle: "Tiga waktu, tiga jenis kalimat — kerangka bahasa Inggris",
-    goal: "Menguasai struktur paling fundamental bahasa Inggris: bagaimana satu kata kerja berubah di tiga waktu sederhana (sekarang, lampau, akan datang) dan bagaimana membentuk tiga jenis kalimat — positif, negatif, dan pertanyaan.",
+    subtitle: "Satu kata kerja, tiga waktu, tiga niat — totalnya sembilan bentuk.",
+    goal: "Mengunci kerangka paling fundamental: satu kata kerja Inggris bisa berdiri dalam sembilan bentuk berbeda — tiga waktu (Sekarang, Lampau, Akan datang) dikali tiga niat (bertanya, menyatakan, menyangkal). Sekali pola ini terasa otomatis, sebagian besar percakapan harian sudah siap dibangun.",
     intro:
-      "Pelajaran pertama ini adalah kerangka utama bahasa Inggris. Setelah Anda menguasainya, sekitar 70% percakapan sehari-hari sudah ada dalam jangkauan Anda. Kita akan belajar bagaimana satu kata kerja berubah di tiga waktu, dan di setiap waktu kita membuat tiga bentuk kalimat: positif, negatif, dan pertanyaan. Dalam bahasa Indonesia kata kerja tidak berubah (\"saya cinta\", \"saya akan cinta\", \"saya sudah cinta\") — tetapi dalam bahasa Inggris bentuk kata kerja dan kata bantunya berubah. Itulah yang akan kita kuasai sekarang.",
+      "Di bahasa Indonesia kita biasa menempel kata kecil — \"sudah\", \"akan\", \"sedang\" — di depan kata kerja. Bentuk \"makan\" tidak ke mana-mana. Bahasa Inggris bekerja berbeda: kata kerjanya sendiri yang bergerak (eat → ate), dan untuk bertanya atau menyangkal selalu butuh kata bantu (do, does, did, will). Pelajaran 1 ini menyajikan pola itu sebagai satu tabel berisi sembilan kotak. Hafalkan polanya, bukan satu per satu kalimatnya — sembilan kotak ini berlaku untuk setiap kata kerja yang akan Anda temui nanti.",
     grammar: [
-      // ── 1. Perbedaan dengan bahasa Indonesia ───────────────
+      // ── 1. Apa yang berbeda dari bahasa Indonesia ─────────
       {
-        heading: "Perbedaan dengan bahasa Indonesia",
+        heading: "Empat perangkap untuk telinga Indonesia",
         explanation:
-          "Sebelum melihat tabel, ingat empat hal penting yang membuat bahasa Inggris berbeda dari bahasa Indonesia. Inilah sumber kesalahan paling umum bagi penutur Indonesia.",
+          "Sebelum ke tabel, kunci empat perbedaan kecil yang sering menjegal. Mengenalinya lebih dulu membuat sembilan kotak nanti masuk akal.",
         examples: [
           {
-            en: "1. Bentuk kata kerja berubah menurut waktu.",
-            id: "Bahasa Indonesia \"saya makan\" sama untuk sekarang, kemarin, dan besok. Bahasa Inggris: I eat / I ate / I will eat.",
+            en: "Kata kerja ikut berubah saat waktu berubah.",
+            id: "\"saya makan\" sama untuk semua waktu. \"I eat / I ate / I will eat\" — bentuknya bergerak.",
           },
           {
-            en: "2. Akhiran -s untuk he/she/it di waktu sekarang.",
-            id: "She eats — bukan She eat. Kesalahan paling sering dilupakan.",
+            en: "Tambahan -s untuk he/she/it di Sekarang.",
+            id: "\"She eats nasi\" — bukan \"She eat\". Ini bagian yang paling sering hilang.",
           },
           {
-            en: "3. Kata bantu wajib (do/does/did/will).",
-            id: "Pertanyaan dan negasi WAJIB pakai kata bantu. Setelah kata bantu, kata kerja kembali ke bentuk dasar.",
+            en: "Bertanya atau menyangkal? Selalu pakai kata bantu.",
+            id: "Will / Do / Does / Did + subjek + kata kerja dasar. Tanpa kata bantu, kalimatnya tidak utuh.",
           },
           {
-            en: "4. Kata \"dia\" netral gender — Inggris membedakan.",
-            id: "Bahasa Indonesia: dia. Bahasa Inggris: he (laki-laki) / she (perempuan).",
+            en: "Kata \"dia\" perlu jenis kelamin.",
+            id: "Bahasa Inggris memisahkan \"dia laki-laki\" (he) dari \"dia perempuan\" (she). Soal akan menandai gendernya.",
           },
         ],
       },
 
       // ── 2. Kata ganti orang ────────────────────────────────
       {
-        heading: "Kata ganti orang — referensi",
+        heading: "Tujuh kata ganti yang akan terus muncul",
         explanation:
-          "Kata ganti subjek bahasa Inggris yang akan muncul di setiap tabel di bawah. Hafalkan dulu, baru lanjut ke tabel teori.",
+          "Setiap kotak di tabel besar nanti memakai daftar ini. Tidak perlu menghafal kaku — cukup kenali siapa yang berpasangan dengan apa.",
         table: {
           caption: "Pemetaan Indonesia → Inggris",
           columns: ["Bahasa Indonesia", "English", "Catatan"],
@@ -58,68 +58,68 @@ export const lessons: Lesson[] = [
         },
       },
 
-      // ── 3. Tabel teori utama (PolyglotTable: love) ─────────
+      // ── 3. Tabel teori utama ──────────────────────────────
       {
-        heading: "Tabel teori — 9 bentuk untuk satu kata kerja",
+        heading: "Sembilan bentuk dari satu kata kerja",
         explanation:
-          "Inilah jantung Pelajaran 1. Satu kata kerja contoh — love (mencintai) — diperlihatkan di tiga waktu (baris: Akan datang → Sekarang → Lampau) dan tiga jenis kalimat (kolom: Pertanyaan → Pernyataan → Negasi). Hasilnya 9 bentuk. Kuasai pola ini, dan kerangka untuk ribuan kalimat bahasa Inggris sudah ada di tangan Anda.",
-        polyglotTable: {
-          caption: "9 bentuk untuk kata kerja \"love\" (mencintai)",
+          "Kata contoh: love (mencintai). Tabel dibaca dari atas (waktu yang paling jauh ke depan — Akan datang) menuju bawah (yang paling jauh ke belakang — Lampau). Kolom kiri-tengah-kanan adalah tiga niat berbicara: bertanya, menyatakan, menyangkal. Sembilan kotak itulah seluruh pelajaran ini.",
+        theoryGrid: {
+          caption: "love · loves · loved — sembilan bentuk",
           v1: "love",
           v1s: "loves",
           v2: "loved",
         },
         note:
-          "Cara membaca: di tiap sel, kata bantu (Will/Do/Does/Did) ada di kiri, daftar kata ganti ditumpuk vertikal di tengah, lalu bentuk kata kerja di kanan. Untuk Sekarang, sel terbagi dua: bagian atas untuk I/you/we/they, bagian bawah untuk he/she/it.",
+          "Cara baca satu kotak: kata bantu (Will/Do/Does/Did) duduk di kiri. Di tengah berderet kata ganti — pilih sesuai subjek. Di kanan: bentuk kata kerja yang dipakai. Khusus kotak \"Sekarang\", ada garis pemisah: bagian atas untuk I/you/we/they, bagian bawah untuk he/she/it dengan akhiran -s.",
       },
 
-      // ── 4. Pertanyaan (kolom kiri / biru) ──────────────────
+      // ── 4. Bertanya — kolom kiri ─────────────────────────
       {
-        heading: "Kolom kiri — Pertanyaan",
+        heading: "Bertanya: kata bantu yang membuka kalimat",
         explanation:
-          "Pertanyaan selalu DIMULAI dengan kata bantu, lalu subjek, lalu kata kerja dasar. Tidak ada -s, tidak ada -ed, tidak ada will lagi di akhir — kata bantu sudah membawa semua informasi waktu.",
+          "Pertanyaan dalam bahasa Inggris selalu diawali oleh kata bantu, lalu subjek, lalu kata kerja yang \"polos\" — tanpa imbuhan apapun. Kata bantu inilah yang menanggung beban menunjukkan waktu, sehingga kata kerjanya cukup dipakai apa adanya.",
         table: {
-          caption: "Pola pertanyaan",
+          caption: "Pembuka pertanyaan",
           columns: ["Waktu", "Kata bantu", "Pola"],
           rows: [
-            ["Akan datang", "Will", "Will + subjek + kata kerja dasar?"],
-            ["Sekarang (I/you/we/they)", "Do", "Do + subjek + kata kerja dasar?"],
-            ["Sekarang (he/she/it)", "Does", "Does + subjek + kata kerja dasar?"],
-            ["Lampau", "Did", "Did + subjek + kata kerja dasar?"],
+            ["Akan datang", "Will", "Will + subjek + V1?"],
+            ["Sekarang (I/you/we/they)", "Do", "Do + subjek + V1?"],
+            ["Sekarang (he/she/it)", "Does", "Does + subjek + V1?"],
+            ["Lampau", "Did", "Did + subjek + V1?"],
           ],
         },
         note:
-          "Contoh kesalahan: Does she loves? — SALAH. Yang benar: Does she love? Karena Does sudah membawa \"-s\".",
+          "Kesalahan klasik: \"Does she eats?\" — \"Does\" sudah memikul tanda dia, jadi \"eats\" dikembalikan ke \"eat\". Hasilnya \"Does she eat?\"",
       },
 
-      // ── 5. Pernyataan (kolom tengah / hijau) ───────────────
+      // ── 5. Menyatakan — kolom tengah ─────────────────────
       {
-        heading: "Kolom tengah — Pernyataan",
+        heading: "Menyatakan: satu-satunya tempat kata kerja berganti baju",
         explanation:
-          "Pernyataan adalah satu-satunya kolom di mana BENTUK KATA KERJA berubah. Di Akan datang tambahkan will sebelum kata kerja dasar. Di Sekarang gunakan kata kerja dasar (kecuali he/she/it dapat -s). Di Lampau gunakan bentuk ke-2 (loved untuk reguler, ate/saw/went untuk tidak beraturan).",
+          "Hanya di kolom inilah bentuk kata kerja benar-benar bergerak. Pada Akan datang, sisipkan \"will\" lalu kata kerja dasar. Pada Sekarang, kata kerja tetap polos (kecuali he/she/it: tambah -s). Pada Lampau, pakai bentuk kedua — \"loved\" untuk yang beraturan, \"ate / went / bought\" untuk yang harus dihafal.",
         table: {
-          caption: "Pola pernyataan",
+          caption: "Bentuk pernyataan",
           columns: ["Waktu", "Pola"],
           rows: [
-            ["Akan datang", "subjek + will + kata kerja dasar"],
-            ["Sekarang (I/you/we/they)", "subjek + kata kerja dasar"],
-            ["Sekarang (he/she/it)", "subjek + kata kerja + -s"],
-            ["Lampau (reguler)", "subjek + kata kerja + -ed"],
-            ["Lampau (tidak beraturan)", "subjek + bentuk ke-2 (dari kamus)"],
+            ["Akan datang", "subjek + will + V1"],
+            ["Sekarang (I/you/we/they)", "subjek + V1"],
+            ["Sekarang (he/she/it)", "subjek + V1 + s"],
+            ["Lampau (beraturan)", "subjek + V1 + ed"],
+            ["Lampau (tidak beraturan)", "subjek + V2 dari kamus"],
           ],
         },
         note:
-          "Hanya kolom ini yang bentuk kata kerjanya berubah. Di kolom Pertanyaan dan Negasi, kata kerja selalu dalam bentuk dasar.",
+          "Karena hanya di sini kata kerja berubah, di dua kolom lain (Pertanyaan dan Negasi) Anda bisa pakai kata kerja apa adanya.",
       },
 
-      // ── 6. Negasi (kolom kanan / merah) ────────────────────
+      // ── 6. Menyangkal — kolom kanan ──────────────────────
       {
-        heading: "Kolom kanan — Negasi",
+        heading: "Menyangkal: kata bantu + not, lalu kata kerja dasar",
         explanation:
-          "Negasi selalu pakai KATA BANTU + NOT (biasanya disingkat). Setelah itu, kata kerja kembali ke bentuk dasar. Sama seperti Pertanyaan, kata bantu menentukan waktu.",
+          "Untuk membuat kalimat negatif, ambil kata bantu yang cocok dengan waktunya, sambungkan \"not\", lalu lanjut dengan kata kerja dasar. Dalam percakapan, kata bantu + not hampir selalu disingkat.",
         table: {
-          caption: "Pola negasi (singkatan paling sering)",
-          columns: ["Waktu", "Lengkap", "Singkatan"],
+          caption: "Bentuk negasi",
+          columns: ["Waktu", "Lengkap", "Singkatan (sehari-hari)"],
           rows: [
             ["Akan datang", "will not", "won't"],
             ["Sekarang (I/you/we/they)", "do not", "don't"],
@@ -128,34 +128,33 @@ export const lessons: Lesson[] = [
           ],
         },
         note:
-          "Singkatan lebih sering di percakapan. Bentuk lengkap dipakai di tulisan resmi atau untuk penekanan: \"I will NOT do it.\"",
+          "Bentuk lengkap dipakai untuk penekanan: \"I will NOT do that.\" Dalam tulisan biasa dan percakapan, gunakan yang singkat.",
       },
 
-      // ── 7. Tabel sama untuk kata kerja tidak beraturan ────
+      // ── 7. Tabel kedua: kata kerja tidak beraturan ───────
       {
-        heading: "Pola yang sama dengan kata kerja tidak beraturan — eat",
+        heading: "Kata kerja yang membandel — eat",
         explanation:
-          "Mari cek pola yang sama dengan kata kerja tidak beraturan: eat (makan). Hanya satu sel yang berbeda dari tabel love di atas — sel Pernyataan di baris Lampau. Di sana \"eat\" berubah jadi \"ate\" (bukan eated). Selebihnya pola persis sama.",
-        polyglotTable: {
-          caption: "9 bentuk untuk kata kerja \"eat\" (makan) — irregular",
+          "Beberapa kata kerja menolak imbuhan -ed di bentuk Lampau. Mereka harus dihafal langsung dari kamus. Untungnya hanya satu kotak yang berbeda dibanding tabel sebelumnya — tepatnya kotak Pernyataan di baris Lampau, tempat \"eat\" berubah jadi \"ate\".",
+        theoryGrid: {
+          caption: "eat · eats · ate — tabel yang sama, satu kotak berganti",
           v1: "eat",
           v1s: "eats",
           v2: "ate",
         },
         note:
-          "Bandingkan dengan tabel \"love\" di atas: hanya satu sel berbeda (loved → ate). Itulah seluruh dampak \"irregular\" di Pelajaran 1.",
+          "Bandingkan dua tabel: dari sembilan kotak, hanya satu yang berbeda. Itulah seluruh \"derita\" kata kerja tidak beraturan di Pelajaran 1 — bentuk Lampaunya wajib dihafal, sisanya identik.",
       },
 
-      // ── 8. Verbs untuk latihan ─────────────────────────────
+      // ── 8. Verbs untuk latihan ───────────────────────────
       {
-        heading: "Kata kerja untuk latihan",
+        heading: "Dua puluh kata kerja yang siap dipakai",
         explanation:
-          "20 kata kerja paling sering — terapkan pola tabel di atas ke setiap kata. 10 reguler (V2 = V1 + -ed) dan 10 tidak beraturan (V2 dari kamus). Pengelompokan sama persis dengan yang dipakai di Latihan.",
+          "Daftar kata yang muncul di sesi latihan: sepuluh yang beraturan (bentuk Lampaunya cukup +ed) dan sepuluh yang tidak beraturan (bentuk Lampaunya harus diingat). Pilihan kata diutamakan untuk percakapan sehari-hari orang Indonesia: makan, minum, beli, pergi, datang, telepon.",
         table: {
-          caption: "Kamus Pelajaran 1",
-          columns: ["V1 (dasar)", "V1+s (he/she/it)", "V2 (Lampau)", "Arti"],
+          caption: "Kamus kata kerja LinguaID — Pelajaran 1",
+          columns: ["V1 (dasar)", "V1 + s (he/she/it)", "V2 (Lampau)", "Arti"],
           rows: [
-            // Regular
             ["love", "loves", "loved", "mencintai"],
             ["help", "helps", "helped", "membantu"],
             ["ask", "asks", "asked", "bertanya"],
@@ -166,7 +165,6 @@ export const lessons: Lesson[] = [
             ["want", "wants", "wanted", "ingin"],
             ["like", "likes", "liked", "suka"],
             ["need", "needs", "needed", "butuh"],
-            // Irregular
             ["see", "sees", "saw", "melihat"],
             ["eat", "eats", "ate", "makan"],
             ["drink", "drinks", "drank", "minum"],
@@ -180,7 +178,7 @@ export const lessons: Lesson[] = [
           ],
         },
         note:
-          "Perhatikan \"go → goes\" (bukan gos) — kata kerja berakhiran -o, -ch, -sh, -ss, -x, -z mendapat -es, bukan -s. Di kamus ini hanya go yang termasuk pola itu.",
+          "Lihat \"go → goes\" (bukan gos). Kata kerja berakhiran -o, -ch, -sh, -ss, -x, -z mendapat -es alih-alih -s. Dari daftar ini, hanya \"go\" yang mengikuti pola itu.",
       },
     ],
     vocabulary: [
@@ -200,16 +198,16 @@ export const lessons: Lesson[] = [
       { en: "now", id: "sekarang", pron: "nau" },
     ],
     phrases: [
-      { en: "I love you.", id: "Aku mencintaimu." },
-      { en: "She works in Jakarta.", id: "Dia bekerja di Jakarta." },
-      { en: "Do you like coffee?", id: "Apakah kamu suka kopi?" },
-      { en: "He doesn't watch TV.", id: "Dia tidak menonton TV." },
-      { en: "We played football yesterday.", id: "Kami bermain sepak bola kemarin." },
-      { en: "I didn't study last night.", id: "Saya tidak belajar tadi malam." },
-      { en: "Did they help you?", id: "Apakah mereka menolongmu?" },
-      { en: "I will call you tomorrow.", id: "Saya akan meneleponmu besok." },
-      { en: "She won't come tonight.", id: "Dia tidak akan datang malam ini." },
-      { en: "Will you help me?", id: "Maukah kamu membantuku?" },
+      { en: "I eat nasi goreng every day.", id: "Saya makan nasi goreng setiap hari." },
+      { en: "She doesn't drink kopi tubruk.", id: "Dia tidak minum kopi tubruk." },
+      { en: "Do you go to the warung often?", id: "Kamu sering ke warung tidak?" },
+      { en: "He bought a new motorbike yesterday.", id: "Dia beli motor baru kemarin." },
+      { en: "We didn't see the rain coming.", id: "Kami tidak menyangka akan hujan." },
+      { en: "Did your mother call you?", id: "Ibumu sudah telepon kamu?" },
+      { en: "I will study tonight.", id: "Saya akan belajar malam ini." },
+      { en: "They won't come to the office.", id: "Mereka tidak akan datang ke kantor." },
+      { en: "Will you help me move tomorrow?", id: "Mau bantu saya pindahan besok?" },
+      { en: "She loves her grandmother very much.", id: "Dia sangat menyayangi neneknya." },
     ],
     exercises: [
       {

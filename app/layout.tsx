@@ -2,17 +2,24 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Poliglot — Bahasa Inggris dalam 16 Pelajaran",
+  title: "LinguaID — Tata bahasa Inggris untuk orang Indonesia",
   description:
-    "Belajar bahasa Inggris dari nol dalam 16 pelajaran. Metode cepat untuk orang Indonesia — tata bahasa, kosakata, latihan, dan frasa praktis.",
+    "Susun kalimat Inggris dari kata-kata, dipandu chip waktu dan tabel teori 9 bentuk. Aplikasi belajar tata bahasa untuk pemula Indonesia.",
   keywords: [
+    "linguaid",
     "belajar bahasa inggris",
-    "kursus inggris",
-    "16 pelajaran",
-    "poliglot",
     "tata bahasa inggris",
-    "bahasa inggris untuk pemula",
+    "simple tenses",
+    "latihan bahasa inggris untuk indonesia",
+    "kalimat bahasa inggris",
   ],
+  openGraph: {
+    title: "LinguaID",
+    description:
+      "Tata bahasa Inggris untuk orang Indonesia — disusun dari kata demi kata.",
+    locale: "id_ID",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -22,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <body className="min-h-screen bg-slate-50 text-slate-900 antialiased">
+      <body className="min-h-screen bg-paper text-ink antialiased">
         {children}
       </body>
     </html>
