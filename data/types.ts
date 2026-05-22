@@ -34,12 +34,20 @@ export type SummaryGridData = {
   hint?: string;
 };
 
+export type PolyglotTableLessonData = {
+  caption?: string;
+  v1: string; // base form
+  v1s: string; // 3rd person singular present (+s/+es)
+  v2: string; // past form
+};
+
 export type GrammarSection = {
   heading: string;
   explanation: string;
   table?: ConjugationTable;
   conjugation?: VerbConjugationData;
   summaryGrid?: SummaryGridData;
+  polyglotTable?: PolyglotTableLessonData;
   examples?: ExampleSentence[];
   note?: string;
 };

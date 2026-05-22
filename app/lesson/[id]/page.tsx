@@ -5,6 +5,7 @@ import { Footer } from "@/components/Footer";
 import { ConjugationTable } from "@/components/ConjugationTable";
 import { VerbConjugation } from "@/components/VerbConjugation";
 import { SummaryGrid } from "@/components/SummaryGrid";
+import { PolyglotTable } from "@/components/PolyglotTable";
 import { VocabularyList } from "@/components/VocabularyList";
 import { PhraseList } from "@/components/PhraseList";
 import { ExampleList } from "@/components/ExampleList";
@@ -88,6 +89,18 @@ export default async function LessonPage({
                 {g.heading}
               </h3>
               <p className="mt-2 text-slate-700">{g.explanation}</p>
+              {g.polyglotTable && (
+                <div className="my-5">
+                  <PolyglotTable
+                    verb={{
+                      v1: g.polyglotTable.v1,
+                      v1s: g.polyglotTable.v1s,
+                      v2: g.polyglotTable.v2,
+                    }}
+                    caption={g.polyglotTable.caption}
+                  />
+                </div>
+              )}
               {g.conjugation && <VerbConjugation data={g.conjugation} />}
               {g.summaryGrid && <SummaryGrid data={g.summaryGrid} />}
               {g.table && <ConjugationTable data={g.table} />}

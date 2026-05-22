@@ -13,176 +13,174 @@ export const lessons: Lesson[] = [
     intro:
       "Pelajaran pertama ini adalah kerangka utama bahasa Inggris. Setelah Anda menguasainya, sekitar 70% percakapan sehari-hari sudah ada dalam jangkauan Anda. Kita akan belajar bagaimana satu kata kerja berubah di tiga waktu, dan di setiap waktu kita membuat tiga bentuk kalimat: positif, negatif, dan pertanyaan. Dalam bahasa Indonesia kata kerja tidak berubah (\"saya cinta\", \"saya akan cinta\", \"saya sudah cinta\") — tetapi dalam bahasa Inggris bentuk kata kerja dan kata bantunya berubah. Itulah yang akan kita kuasai sekarang.",
     grammar: [
+      // ── 1. Perbedaan dengan bahasa Indonesia ───────────────
       {
-        heading: "Kata ganti orang — referensi cepat",
+        heading: "Perbedaan dengan bahasa Indonesia",
         explanation:
-          "Sebelum mulai, ingat kata ganti subjek bahasa Inggris. Anda akan melihatnya di setiap tabel di bawah ini. Hal penting yang harus diingat: di waktu sekarang, jika subjeknya he / she / it — kata kerja mendapat tambahan -s.",
+          "Sebelum melihat tabel, ingat empat hal penting yang membuat bahasa Inggris berbeda dari bahasa Indonesia. Inilah sumber kesalahan paling umum bagi penutur Indonesia.",
+        examples: [
+          {
+            en: "1. Bentuk kata kerja berubah menurut waktu.",
+            id: "Bahasa Indonesia \"saya makan\" sama untuk sekarang, kemarin, dan besok. Bahasa Inggris: I eat / I ate / I will eat.",
+          },
+          {
+            en: "2. Akhiran -s untuk he/she/it di waktu sekarang.",
+            id: "She eats — bukan She eat. Kesalahan paling sering dilupakan.",
+          },
+          {
+            en: "3. Kata bantu wajib (do/does/did/will).",
+            id: "Pertanyaan dan negasi WAJIB pakai kata bantu. Setelah kata bantu, kata kerja kembali ke bentuk dasar.",
+          },
+          {
+            en: "4. Kata \"dia\" netral gender — Inggris membedakan.",
+            id: "Bahasa Indonesia: dia. Bahasa Inggris: he (laki-laki) / she (perempuan).",
+          },
+        ],
+      },
+
+      // ── 2. Kata ganti orang ────────────────────────────────
+      {
+        heading: "Kata ganti orang — referensi",
+        explanation:
+          "Kata ganti subjek bahasa Inggris yang akan muncul di setiap tabel di bawah. Hafalkan dulu, baru lanjut ke tabel teori.",
         table: {
-          caption: "Kata Ganti Subjek",
-          columns: ["English", "Bahasa Indonesia"],
+          caption: "Pemetaan Indonesia → Inggris",
+          columns: ["Bahasa Indonesia", "English", "Catatan"],
           rows: [
-            ["I", "saya / aku"],
-            ["you", "kamu / Anda / kalian"],
-            ["he", "dia (laki-laki)"],
-            ["she", "dia (perempuan)"],
-            ["it", "ia / itu (benda, hewan)"],
-            ["we", "kami / kita"],
-            ["they", "mereka"],
+            ["saya / aku", "I", "—"],
+            ["kamu / Anda / kalian", "you", "tunggal & jamak sama"],
+            ["dia (laki-laki)", "he", "wajib disebut gender"],
+            ["dia (perempuan)", "she", "wajib disebut gender"],
+            ["ia / itu (benda, hewan)", "it", "untuk benda atau hewan"],
+            ["kami / kita", "we", "—"],
+            ["mereka", "they", "—"],
           ],
         },
       },
+
+      // ── 3. Tabel teori utama (PolyglotTable: love) ─────────
       {
-        heading: "1. Waktu Sekarang (Present Simple)",
+        heading: "Tabel teori — 9 bentuk untuk satu kata kerja",
         explanation:
-          "Kalimat positif dibentuk seperti dalam bahasa Indonesia: subjek + kata kerja. Tetapi jika subjeknya he / she / it, tambahkan -s di akhir kata kerja. Kalimat negatif menggunakan kata bantu do / does + not. Pertanyaan dibentuk dengan meletakkan Do / Does di awal kalimat. Perhatikan: setelah doesn't, akhiran -s di kata kerja hilang — kata kerja kembali ke bentuk dasar.",
-        conjugation: {
-          verb: "to love (mencintai)",
-          tense: "Sekarang — Present Simple",
-          columns: ["Positif", "Negatif", "Pertanyaan"],
-          hint: "Singkatan: do not = don't, does not = doesn't",
-          groups: [
-            {
-              pronouns: ["I", "you", "we", "they"],
-              cells: ["love", "don't love", "Do ... love?"],
-            },
-            {
-              pronouns: ["he", "she", "it"],
-              cells: ["loves", "doesn't love", "Does ... love?"],
-            },
-          ],
+          "Inilah jantung Pelajaran 1. Satu kata kerja contoh — love (mencintai) — diperlihatkan di tiga waktu (baris: Akan datang → Sekarang → Lampau) dan tiga jenis kalimat (kolom: Pertanyaan → Pernyataan → Negasi). Hasilnya 9 bentuk. Kuasai pola ini, dan kerangka untuk ribuan kalimat bahasa Inggris sudah ada di tangan Anda.",
+        polyglotTable: {
+          caption: "9 bentuk untuk kata kerja \"love\" (mencintai)",
+          v1: "love",
+          v1s: "loves",
+          v2: "loved",
         },
-        examples: [
-          { en: "I love coffee.", id: "Saya suka kopi." },
-          { en: "She loves music.", id: "Dia suka musik." },
-          { en: "We don't love noise.", id: "Kami tidak suka kebisingan." },
-          { en: "Does he love football?", id: "Apakah dia suka sepak bola?" },
-        ],
         note:
-          "Kesalahan paling umum: lupa -s untuk dia (he/she/it). Aturan emas — periksa subjek sebelum menulis kata kerja.",
+          "Cara membaca: di tiap sel, kata bantu (Will/Do/Does/Did) ada di kiri, daftar kata ganti ditumpuk vertikal di tengah, lalu bentuk kata kerja di kanan. Untuk Sekarang, sel terbagi dua: bagian atas untuk I/you/we/they, bagian bawah untuk he/she/it.",
       },
+
+      // ── 4. Pertanyaan (kolom kiri / biru) ──────────────────
       {
-        heading: "2. Waktu Lampau (Past Simple)",
+        heading: "Kolom kiri — Pertanyaan",
         explanation:
-          "Untuk kata kerja beraturan, bentuk lampau dibuat dengan menambahkan -ed. Yang menyenangkan: bentuknya sama untuk SEMUA subjek — tidak perlu pikirkan -s lagi. Kalimat negatif dan pertanyaan menggunakan kata bantu did (untuk semua subjek), dan kata kerja kembali ke bentuk dasar.",
-        conjugation: {
-          verb: "to love → loved",
-          tense: "Lampau — Past Simple",
-          columns: ["Positif", "Negatif", "Pertanyaan"],
-          hint: "Singkatan: did not = didn't",
-          groups: [
-            {
-              pronouns: ["I", "you", "he", "she", "it", "we", "they"],
-              cells: ["loved", "didn't love", "Did ... love?"],
-            },
-          ],
-        },
-        examples: [
-          { en: "I worked yesterday.", id: "Saya bekerja kemarin." },
-          { en: "She didn't call me.", id: "Dia tidak meneleponku." },
-          { en: "Did you study last night?", id: "Apakah kamu belajar tadi malam?" },
-          { en: "They played football on Sunday.", id: "Mereka bermain sepak bola hari Minggu." },
-        ],
-        note:
-          "Untuk kata kerja tidak beraturan (go → went, see → saw), bentuknya tidak menambah -ed — kita akan pelajari di Pelajaran 9. Tetapi pola DID + bentuk dasar untuk pertanyaan dan negasi tetap sama.",
-      },
-      {
-        heading: "3. Waktu Akan Datang (Future Simple)",
-        explanation:
-          "Bentuk masa depan paling sederhana: tambahkan kata bantu will sebelum kata kerja dasar. Bentuknya sama untuk semua subjek. Negasi: will + not = won't. Pertanyaan: pindahkan will ke awal kalimat.",
-        conjugation: {
-          verb: "to love",
-          tense: "Akan datang — Future Simple",
-          columns: ["Positif", "Negatif", "Pertanyaan"],
-          hint: "Singkatan: will not = won't, I will = I'll",
-          groups: [
-            {
-              pronouns: ["I", "you", "he", "she", "it", "we", "they"],
-              cells: ["will love", "won't love", "Will ... love?"],
-            },
-          ],
-        },
-        examples: [
-          { en: "I will help you tomorrow.", id: "Saya akan membantumu besok." },
-          { en: "She won't come tonight.", id: "Dia tidak akan datang malam ini." },
-          { en: "Will they arrive on time?", id: "Apakah mereka akan tiba tepat waktu?" },
-        ],
-      },
-      {
-        heading: "Ringkasan — 9 bentuk dalam satu tabel",
-        explanation:
-          "Inilah jantung pelajaran ini. Satu kata kerja, satu subjek, tetapi sembilan bentuk berbeda — tiga waktu dikalikan tiga jenis kalimat. Hafalkan tabel ini, dan Anda sudah punya kerangka untuk ribuan kalimat bahasa Inggris.",
-        summaryGrid: {
-          caption: "\"I\" + kata kerja \"love\" di semua kombinasi",
-          subject: "I",
-          verb: "love",
-          rows: [
-            {
-              tense: "Sekarang",
-              aux: "do",
-              cells: ["I love", "I don't love", "Do I love?"],
-            },
-            {
-              tense: "Lampau",
-              aux: "did",
-              cells: ["I loved", "I didn't love", "Did I love?"],
-            },
-            {
-              tense: "Akan datang",
-              aux: "will",
-              cells: ["I will love", "I won't love", "Will I love?"],
-            },
-          ],
-          hint: "Pola kata bantu: sekarang → do/does, lampau → did, akan datang → will. Setiap kata bantu \"menangani\" negasi dan pertanyaan. Setelah kata bantu, kata kerja SELALU dalam bentuk dasar.",
-        },
-      },
-      {
-        heading: "Pola yang sama untuk \"he / she / it\"",
-        explanation:
-          "Satu-satunya perbedaan untuk \"dia\" (he/she/it) ada di waktu sekarang: kata kerja mendapat -s, dan kata bantu \"do\" berubah jadi \"does\". Di lampau dan masa depan — semuanya sama persis.",
-        summaryGrid: {
-          caption: "\"He\" + kata kerja \"love\" di semua kombinasi",
-          subject: "he",
-          verb: "love",
-          rows: [
-            {
-              tense: "Sekarang",
-              aux: "does",
-              cells: ["He loves", "He doesn't love", "Does he love?"],
-            },
-            {
-              tense: "Lampau",
-              aux: "did",
-              cells: ["He loved", "He didn't love", "Did he love?"],
-            },
-            {
-              tense: "Akan datang",
-              aux: "will",
-              cells: ["He will love", "He won't love", "Will he love?"],
-            },
-          ],
-          hint: "Perhatikan: di pertanyaan dan negasi waktu sekarang dengan he/she/it, \"-s\" hilang dari kata kerja — karena kata bantu \"does\" sudah membawa informasi \"dia\".",
-        },
-      },
-      {
-        heading: "Beberapa kata kerja untuk latihan",
-        explanation:
-          "Coba terapkan pola yang sama ke kata kerja lain. Cukup dengan beberapa kata kerja ini, Anda sudah bisa membuat ratusan kalimat.",
+          "Pertanyaan selalu DIMULAI dengan kata bantu, lalu subjek, lalu kata kerja dasar. Tidak ada -s, tidak ada -ed, tidak ada will lagi di akhir — kata bantu sudah membawa semua informasi waktu.",
         table: {
-          caption: "Kata kerja beraturan yang sering",
-          columns: ["Dasar (V1)", "Lampau (V2)", "Arti"],
+          caption: "Pola pertanyaan",
+          columns: ["Waktu", "Kata bantu", "Pola"],
           rows: [
-            ["work", "worked", "bekerja"],
-            ["play", "played", "bermain"],
-            ["study", "studied", "belajar"],
-            ["like", "liked", "menyukai"],
-            ["want", "wanted", "ingin"],
-            ["live", "lived", "tinggal"],
-            ["talk", "talked", "berbicara"],
-            ["help", "helped", "menolong"],
-            ["watch", "watched", "menonton"],
-            ["listen", "listened", "mendengarkan"],
+            ["Akan datang", "Will", "Will + subjek + kata kerja dasar?"],
+            ["Sekarang (I/you/we/they)", "Do", "Do + subjek + kata kerja dasar?"],
+            ["Sekarang (he/she/it)", "Does", "Does + subjek + kata kerja dasar?"],
+            ["Lampau", "Did", "Did + subjek + kata kerja dasar?"],
           ],
         },
+        note:
+          "Contoh kesalahan: Does she loves? — SALAH. Yang benar: Does she love? Karena Does sudah membawa \"-s\".",
+      },
+
+      // ── 5. Pernyataan (kolom tengah / hijau) ───────────────
+      {
+        heading: "Kolom tengah — Pernyataan",
+        explanation:
+          "Pernyataan adalah satu-satunya kolom di mana BENTUK KATA KERJA berubah. Di Akan datang tambahkan will sebelum kata kerja dasar. Di Sekarang gunakan kata kerja dasar (kecuali he/she/it dapat -s). Di Lampau gunakan bentuk ke-2 (loved untuk reguler, ate/saw/went untuk tidak beraturan).",
+        table: {
+          caption: "Pola pernyataan",
+          columns: ["Waktu", "Pola"],
+          rows: [
+            ["Akan datang", "subjek + will + kata kerja dasar"],
+            ["Sekarang (I/you/we/they)", "subjek + kata kerja dasar"],
+            ["Sekarang (he/she/it)", "subjek + kata kerja + -s"],
+            ["Lampau (reguler)", "subjek + kata kerja + -ed"],
+            ["Lampau (tidak beraturan)", "subjek + bentuk ke-2 (dari kamus)"],
+          ],
+        },
+        note:
+          "Hanya kolom ini yang bentuk kata kerjanya berubah. Di kolom Pertanyaan dan Negasi, kata kerja selalu dalam bentuk dasar.",
+      },
+
+      // ── 6. Negasi (kolom kanan / merah) ────────────────────
+      {
+        heading: "Kolom kanan — Negasi",
+        explanation:
+          "Negasi selalu pakai KATA BANTU + NOT (biasanya disingkat). Setelah itu, kata kerja kembali ke bentuk dasar. Sama seperti Pertanyaan, kata bantu menentukan waktu.",
+        table: {
+          caption: "Pola negasi (singkatan paling sering)",
+          columns: ["Waktu", "Lengkap", "Singkatan"],
+          rows: [
+            ["Akan datang", "will not", "won't"],
+            ["Sekarang (I/you/we/they)", "do not", "don't"],
+            ["Sekarang (he/she/it)", "does not", "doesn't"],
+            ["Lampau", "did not", "didn't"],
+          ],
+        },
+        note:
+          "Singkatan lebih sering di percakapan. Bentuk lengkap dipakai di tulisan resmi atau untuk penekanan: \"I will NOT do it.\"",
+      },
+
+      // ── 7. Tabel sama untuk kata kerja tidak beraturan ────
+      {
+        heading: "Pola yang sama dengan kata kerja tidak beraturan — eat",
+        explanation:
+          "Mari cek pola yang sama dengan kata kerja tidak beraturan: eat (makan). Hanya satu sel yang berbeda dari tabel love di atas — sel Pernyataan di baris Lampau. Di sana \"eat\" berubah jadi \"ate\" (bukan eated). Selebihnya pola persis sama.",
+        polyglotTable: {
+          caption: "9 bentuk untuk kata kerja \"eat\" (makan) — irregular",
+          v1: "eat",
+          v1s: "eats",
+          v2: "ate",
+        },
+        note:
+          "Bandingkan dengan tabel \"love\" di atas: hanya satu sel berbeda (loved → ate). Itulah seluruh dampak \"irregular\" di Pelajaran 1.",
+      },
+
+      // ── 8. Verbs untuk latihan ─────────────────────────────
+      {
+        heading: "Kata kerja untuk latihan",
+        explanation:
+          "20 kata kerja paling sering — terapkan pola tabel di atas ke setiap kata. 10 reguler (V2 = V1 + -ed) dan 10 tidak beraturan (V2 dari kamus). Pengelompokan sama persis dengan yang dipakai di Latihan.",
+        table: {
+          caption: "Kamus Pelajaran 1",
+          columns: ["V1 (dasar)", "V1+s (he/she/it)", "V2 (Lampau)", "Arti"],
+          rows: [
+            // Regular
+            ["love", "loves", "loved", "mencintai"],
+            ["help", "helps", "helped", "membantu"],
+            ["ask", "asks", "asked", "bertanya"],
+            ["answer", "answers", "answered", "menjawab"],
+            ["close", "closes", "closed", "menutup"],
+            ["open", "opens", "opened", "membuka"],
+            ["call", "calls", "called", "menelepon"],
+            ["want", "wants", "wanted", "ingin"],
+            ["like", "likes", "liked", "suka"],
+            ["need", "needs", "needed", "butuh"],
+            // Irregular
+            ["see", "sees", "saw", "melihat"],
+            ["eat", "eats", "ate", "makan"],
+            ["drink", "drinks", "drank", "minum"],
+            ["make", "makes", "made", "membuat"],
+            ["sleep", "sleeps", "slept", "tidur"],
+            ["buy", "buys", "bought", "membeli"],
+            ["go", "goes", "went", "pergi"],
+            ["come", "comes", "came", "datang"],
+            ["give", "gives", "gave", "memberi"],
+            ["take", "takes", "took", "mengambil"],
+          ],
+        },
+        note:
+          "Perhatikan \"go → goes\" (bukan gos) — kata kerja berakhiran -o, -ch, -sh, -ss, -x, -z mendapat -es, bukan -s. Di kamus ini hanya go yang termasuk pola itu.",
       },
     ],
     vocabulary: [
